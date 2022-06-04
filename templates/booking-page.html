@@ -1,0 +1,238 @@
+
+
+{% extends 'base.html' %}
+{% block title%} TMS - HOME PAGE {% endblock %}
+ {% block body %}
+
+
+<div id="wrapper">
+
+
+{% set fname = 'packimages/' + result.PackageImage %}
+<div class="post" id="post-330">
+<div class="entry"><ao-tour-event-detail> <ao-tour-call-adventure-banner class="visible-xs">
+<div class="ao-tour__cta"> <div class="container">
+<div class="clearfix">
+<a class="btn ao-tour__cta-btn ao-tour-btn-accent ao-tour__cta-chat" href="../../../api.whatsapp.com/send10c6.html?phone=03334776744">
+<i class="ao-tour-icon icon-bubble"></i></a>
+<a class="btn ao-tour__cta-btn ao-tour-btn-primary" href="../../make-my-trip/index.html">
+<i class="ao-tour-icon icon-ao-tour-map"></i><span>Make my Trip</span></a> </div> </div> </div> </div> </ao-tour-call-adventure-banner>
+<div class="ao-tour-page_header" style="background: linear-gradient(rgba(26, 26, 26, 0.71), rgba(0, 0, 0, 0.83)), url({{ url_for('static', filename=fname) }}) no-repeat center; background-size: cover;"> <div class="container">
+  <div class="ao-tour-page_event-header"> <div class="ao-tour-page__meta-wrapper"> <ul class="ao-tour-page__breadcrumbs">
+<li><a href="../../index.html">Home</a></li>
+<li><a href="../../trips/index.html">Trips</a></li>
+<li><span>{{result.PackageName}}</span></li> </ul>
+<h1 class="ao-tour-page__title">{{result.PackageName}}</h1>
+<a class="ao-tour-page__vendor">Pak Adventures</a> <a1 class="ao-tour-page__location">
+<i class="icon-ao-tour-pin icon-ao-tour"></i><aa class="custom-category">
+<a href="../../trips/khyber-pakhtunkhwa/index.html" rel="category tag">Khyber Pakhtunkhwa</a> /
+<a href="../../trips/swat/index.html" rel="category tag">Swat</a></aa> </a1> <a class="ao-tour-page__duration">
+<i class="icon-ao-tour-watch icon-ao-tour"></i> 3 Days Trip</a>
+<section class="ao-tour-single-event__gallery"> <slick-carousel _nghost-c2="" class="slick-initialized slick-slider">
+  <div class="row hidden-xs"> <div class="col-md-4" for="zoomCheck0">
+    <input type="checkbox" id="zoomCheck0"> <label class="ch0" for="zoomCheck0">
+      <img class="aa" style="width:100%; height:172px; border: 5px solid #182126;" src="{{ url_for('static', filename=fname) }}"></label></div> </div>
+      <div class="row visible-xs">
+<div class="col-md-4">
+<img style="width:100%; height:auto; border: 5px solid #182126; margin-bottom: 10px;" src="{{ url_for('static', filename=fname) }}"></div> </div> </slick-carousel> <gallery-modal _nghost-c10="">
+<div _ngcontent-c10="">  </div> </gallery-modal> </section> </div>
+<div class="ao-tour-page__event-booking">
+<div class="ao-tour-page__event-booking-price">
+<div class="ao-tour-page__event-booking-label">Starting from</div>
+<div class="ao-tour-page__event-booking-tag"><sup>Rs.</sup>{{result.PackagePrice}}</div>
+<div class="ao-tour-page__event-booking-person">per person</div> </div>
+<div style="width:100%;text-align:center">
+<div> <div class="ao-tour-page__event-calendar"> <datepicker maxmode="day" class="ng-untouched ng-pristine ng-valid"> <datepicker-inner>  <div class="well well-sm bg-faded p-a card" role="application"> <daypicker tabindex="0">  <table aria-activedescendant="activeDateId" role="grid" aria-labelledby="datepicker--3421-title"> <thead><tr><th>
+<button class="btn btn-default btn-secondary btn-sm pull-left" tabindex="-1" type="button">
+<i class="glyphicon glyphicon-chevron-left"></i></button></th><th colspan="5">
+<button class="btn btn-default btn-secondary btn-sm disabled" style="width:100%;" tabindex="-1" type="button" id="datepicker--3421-title" disabled=""><strong>CALENDER 2022 </strong></button></th><th>
+<button class="btn btn-default btn-secondary btn-sm pull-right" tabindex="-1" type="button">
+<i class="glyphicon glyphicon-chevron-right"></i></button></th></tr><tr>
+<th class="text-center"><small aria-label="labelz.full" ><b>Mo</b></small></th><th class="text-center"><small aria-label="labelz.full" ><b>Tu</b></small></th><th class="text-center"><small aria-label="labelz.full" ><b>We</b></small></th><th class="text-center"><small aria-label="labelz.full" ><b>Th</b></small></th><th class="text-center"><small aria-label="labelz.full" ><b>Fr</b></small></th><th class="text-center"><small aria-label="labelz.full" ><b>Sa</b></small></th><th class="text-center"><small aria-label="labelz.full" ><b>Su</b></small></th></tr></thead><tbody><tr><td class="text-center" role="gridcell" id="datepicker--3421-8">&nbsp;</td><td class="text-center" role="gridcell" id="datepicker--3421-8">&nbsp;</td><td class="text-center" role="gridcell" id="datepicker--3421-8">&nbsp;</td><td class="text-center" role="gridcell" id="datepicker--3421-8">&nbsp;</td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>1</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>2</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm ao-tour-enabled-date__calendar active btn-default">3</span>
+</button></td></tr></tbody><tr><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>4</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>5</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>6</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>7</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>8</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>9</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>10</span></button></td></tr></tbody><tr><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>11</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>12</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>13</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>14</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>15</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>16</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>17</span></button></td></tr></tbody><tr><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>18</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>19</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>20</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>21</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>22</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>23</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>24</span></button></td></tr></tbody><tr><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>25</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>26</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
+<span>27</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm ao-tour-enabled-date__calendar active btn-default">28</span></button></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr> </table> </daypicker> <monthpicker tabindex="0">  </monthpicker> <yearpicker tabindex="0">  </yearpicker> </div> </datepicker-inner> </datepicker> </div>
+<button class="booknow btn ao-tour-page__event-book-btn ao-tour-btn-primary">Book Now </button> </div>  </div> </div> </div> </div> </div> <div class="ao-tour-single-event"> <div class="ao-tour-single-event__nav-wrap hidden-xs">
+<div class="ao-tour-single-event__nav" ao-tour-sticky-booking-navbar="">
+<div class="container">
+<ul class="ao-tour-single-event__nav-list"> </ul>
+<a class="btn ao-tour-btn-accent ao-tour-single-event__book-btn-lg" href="../../book/trip-to-arang-kel-taobat-by-0-km.html">Want to Book?</a> </div> </div> </div>  <div class="booknow-options ao-tour-filter__options2" style="display: none;" hidden=""> <div class="container"> <a class="booknow ao-tour-filter__options-close2"><i class="icon-ao-tour icon-letter-x"></i></a>
+  <div class="ao-tour-filter__options-listing"> <div role="form" class="wpcf7" id="wpcf7-f254-p330-o1" lang="en-US" dir="ltr"><div class="screen-reader-response">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-sm-12">
+<section class="ao-tour-single-event__desc ao-tour-single-event__section" id="overviewSection">
+<h2 class="ao-tour-heading-1">Description</h2>
+<markdown _nghost-c11="">
+<p>
+{{result.PackageDetails}}
+  <br /></p>
+</markdown>
+<style> input[type=checkbox] { display: none;
+}
+.aa { transition: transform 1s ease; cursor: zoom-in;
+}
+input[type=checkbox]:checked ~ .ch0 > img { transform: scale(2.5) translate(50%, 0%); cursor: zoom-out; z-index: 1;
+}
+input[type=checkbox]:checked ~ .ch1 > img { transform: scale(2.5) translate(50%, 0%); cursor: zoom-out; z-index: 1;
+}
+input[type=checkbox]:checked ~ .ch2 > img { transform: scale(2.5) translate(0%, 0%); cursor: zoom-out; z-index: 1;
+}
+input[type=checkbox]:checked ~ .ch3 > img { transform: scale(2.5) translate(-50%, 0%); cursor: zoom-out; z-index: 1;
+} </style> <div class="row visible-xs"> <div class="col-md-4">
+<img style="width:100%; height:auto; border-radius: 0px; margin-bottom: 10px;" src="#"></div>
+<div class="col-md-4"><img style="width:100%; height:auto; border-radius: 0px; margin-bottom: 10px;" src="#"></div>
+<div class="col-md-4"><img style="width:100%; height:auto; border-radius: 0px; margin-bottom: 10px;" src="#"></div> </div>
+
+
+<i aria-hidden="true" class="fa fa-clock-o"></i> Duration:</strong> 3 Days Trip</p> </section>
+
+<section class="ao-tour-single-event__facilities ao-tour-single-event__section" id="facilitiesSection">
+<h2 class="ao-tour-heading-1">Facilities</h2>
+<div class="ao-tour-single-event__facilities-row">
+<div class="ao-tour-single-event__facilities-row-label">Services</div>
+<ul class="ao-tour-single-event__facilities-row-value">
+<li>{% if result.accommodation ==1 %} Accommodation (3-4 persons sharing)</li> {% endif %} <li> Transport</li>
+<li> Standard Meals</li><li> Guide</li><li> Basic first aid kit</li> </ul> </div>
+ <div class="ao-tour-single-event__facilities-row">
+<div class="ao-tour-single-event__facilities-row-label">Activities</div>
+<ul class="ao-tour-single-event__facilities-row-value">
+<li></li> </ul> </div> </section>
+<section class="ao-tour-single-event__facilities ao-tour-single-event__section" id="cancellationPolicy">
+<h2 class="ao-tour-heading-1">Cancellation Policy</h2> <div class="ao-tour-single-event__facilities-row">
+<markdown _nghost-c11=""> <ul> <li>50% of the total amount will be deducted if cancellation notified 7 days prior to the trip</li>
+<li> 75% of the total amount will be deducted if cancellation notified 4 days prior to the trip</li>
+<li> 100% of the total amount will be deducted if cancellation notified within the last 3 days prior to the trip unless the trip is canceled by the management</li> </ul>
+</markdown>
+</div> </section>
+<style> .sb-style .sb-button, .sb-style a { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-direction: normal;
+}
+.sb-style { display: -webkit-inline-box; display: -ms-inline-flexbox; display: inline-flex; margin: 1em auto; -ms-flex-wrap: wrap; flex-wrap: wrap;
+}
+.sb-style .sb-button, .sb-style button { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-direction: normal;
+}
+.sb-style .sb-button { min-width: 60px; padding: 5px; -webkit-box-orient: vertical; -ms-flex-direction: column; flex-direction: column;
+}
+.facebook { -webkit-box-ordinal-group: 2; -ms-flex-order: 1; order: 1;
+}
+.googleplus { -webkit-box-ordinal-group: 4; -ms-flex-order: 3; order: 3;
+}
+.sb-style.sb-style-colors .facebook a { background: #4267b2;
+}
+.sb-style.sb-style-colors .googleplus a { background: #db4437;
+}
+.sb-style.sb-style-colors .whatsapp a { background: #13c033;
+}
+.sb-style .sb-show-count { -ms-flex-pack: distribute; justify-content: space-around; max-width: 6em;
+}
+.sb-style a { -webkit-box-orient: horizontal; -ms-flex-direction: row; flex-direction: row; -webkit-box-align: center; -ms-flex-align: center; align-items: center; background-color: transparent; border-radius: .2em; padding: .5em .9em; font-size: 1em; color: #fff;
+}
+.sb-style .sb-button, .sb-style a { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-direction: normal;
+}
+a:hover { cursor: pointer; outline: 0; border: 0;
+} </style>
+
+ </div> </div> </div></ao-tour-event-detail>  </div>
+
+
+<!-- FORM -->
+
+ <div class="row">
+ <div class="col-md-8 col-sm-12">
+ <section class="ao-tour-single-event__desc ao-tour-single-event__section" id="overviewSection">
+  <ao-tour-make-adventure>
+  <div class="ao-tour-margin__top-10 ao-tour-margin__bottom-30">
+  <div class="container">
+  <div class="ao-tour-form-wrapper ao-tour-mma-form"><article id="post-11" class="post-11 page type-page status-publish hentry">
+  <div class="entry-content">
+  <form id="contact-form" class="ng-untouched ng-pristine ng-invalid">
+  <input type="hidden" name="action" value="contact_send" />
+  <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">Booking Details</h2>
+  <label class="ao-tour-form-label">Your Full Name</label>
+  <input class="form-control ng-pristine ng-invalid ng-touched" name="name" required placeholder="Please enter Full Name" type="text" />
+  <label class="ao-tour-form-label">Your Email</label>
+  <input class="form-control ng-pristine ng-invalid ng-touched" name="email" required placeholder="Please enter Email" type="email" />
+  <label class="ao-tour-form-label">Your Mobile</label>
+  <input class="form-control ng-pristine ng-invalid ng-touched" name="mobile" required placeholder="Please enter mobile" type="text" />
+  <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">When would you like to go?</h2> <div class="row">
+  <div class="col-sm-6"> <div class="form-group">
+  <label class="ao-tour-form-label">Departure City</label>
+  <input class="form-control ng-pristine ng-valid ng-touched" name="depcity" required placeholder="Please enter Departure City" type="text">  </div> </div>
+  <div class="col-sm-6"> <div class="form-group ao-tour-datepicker" dropdown="" dropdown-append-to-body="">
+  <label class="ao-tour-form-label">Date</label>
+  <div class="form-control">
+  <input class="form-control ng-pristine ng-invalid ng-touched" style="height: 40px; margin-top: -8px;" type="date" required name="date"> </div>  </div> </div>
+  <br><br>
+  <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">Booking Details</h2>
+  <textarea class="form-control ng-pristine ng-invalid ng-touched" name="message" required placeholder="Type your further details here"></textarea>
+  <input class="btn ao-tour-btn-primary ao-tour-btn__mma-btn" style="padding: 0px;" type="submit" value="Plan it for me!" /> </form> </div>
+  <div id="ajax-content1"></div>
+  <div id="ajax-content2"></div>
+  <script type="text/javascript"> jQuery(document).ready(function ($) { var is_sending = false, failure_message = 'Whoops, looks like there was a problem. Please try again later.'; $('#contact-form').submit(function (e) { if (is_sending || !validateInputs()) { return false; // Don't let someone submit the form while it is in-progress... } e.preventDefault(); // Prevent the default form submit $this = $(this); // Cache this $.ajax({ url: 'https://www.pakadventures.pk/wp-admin/admin-ajax.php', // Let WordPress figure this url out... cache: false, type: 'post', dataType: 'JSON', // Set this so we don't need to decode the response... data: $this.serialize(), // One-liner form data prep... beforeSend: function () { is_sending = true; $('#ajax-content1').append('<div class="text-center"><h3>Please Wait!</h3></div>'); }, error: handleFormError, success: function (data) { if (data.status === 'success') { // Here, you could trigger a success message $('#ajax-content1').hide(); $('#ajax-content2').append('<div class="text-center"><h3>Your Message Has Been Sent Successfully!</h3><p>Our Team Reply You As Soon As Possible!.</p></div>'); document.getElementById("contact-form").reset(); } else { handleFormError(); // If we don't get the expected response, it's an error... } } }); }); function handleFormError () { is_sending = false; // Reset the is_sending var so they can try again... alert(failure_message); } function validateInputs () { var $name = $('#contact-form > input[name="name"]').val(), $email = $('#contact-form > input[name="email"]').val(); if (!$name) { alert('Before sending, please make sure to provide your name,.'); return false; } if (!$email) { alert('Before sending, please make sure to provide your email.'); return false; } return true; } }); </script> </article></div>
+
+</div></div></div></ao-tour-make-adventure>
+</div></div></div>
+
+
+
+
+
+
+{% endblock %}

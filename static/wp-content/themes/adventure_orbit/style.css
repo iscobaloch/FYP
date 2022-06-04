@@ -1,0 +1,178 @@
+/*
+Theme Name: Adventures Tour Travel
+Theme URI: www.orbitbrain.com
+Description: Adventures Tour Travel Team
+Version: 1.1
+Author: Adventures Tour Travel Team
+Theme URI: http://att.orbitbrain.com/
+Author URI: http://orbitbrain.com/
+License: OrbitBrain Public License
+License URI: http://www.orbitbrain.com/
+Tags: one-column, two-columns, right-sidebar, custom-menu, featured-images, post-formats, sticky-post
+Text Domain: us
+*/
+/*default*/
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+	background-color: #eee;
+	clip: auto !important;
+	clip-path: none;
+	color: #444;
+	display: block;
+	font-size: 1em;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
+.gallery-caption{}
+.commentlist .bypostauthor {}
+.commentlist li ul.children li.bypostauthor {}
+/*default end*/
+
+.widget-title{
+color: white;
+font-weight: bold;
+text-transform: uppercase;
+padding: 0 0 15px 0;
+margin: 0 0 15px 0;
+border-bottom: 1px solid #a6a6a6;
+font-size: 15px;
+}
+.logo_head{ color: white;
+font-weight: 900;
+font-family: "Roboto Condensed", Arial;
+font-size: 36px;
+text-transform: uppercase;
+}
+.ao-tour-header .ao-tour-navbar .ao-tour-navbar__nav li ul li ul { display:none;
+}
+.ao-tour-header .ao-tour-navbar .ao-tour-navbar__nav li ul li:hover ul {
+display: block;
+position: absolute;
+top: 40px;
+background: #373737;
+width: 150px;
+padding: 20px;
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
+box-shadow: 0px 0px 5px #444343b3;
+}
+.ao-tour-header .ao-tour-navbar .ao-tour-navbar__nav li ul li:hover ul li {
+background: #373737;
+line-height: 30px;
+margin-left: -20px;
+padding: 5px;
+width: 150px;
+}
+.ao-tour-header .ao-tour-navbar .ao-tour-navbar__nav li ul li:hover ul li a {
+color : #fff;
+}
+.ao-tour-header .ao-tour-navbar .ao-tour-navbar__nav li ul li:hover ul li a:hover {
+color: #fff;
+border: 1px solid #ffffff80;
+box-shadow: 0px 0px 5px #ffffff80;
+border-radius: 10px;
+}
+/*! Home Slider */
+.track { -webkit-animation-name: slide-by-transform; -webkit-animation-duration: 20000ms; -webkit-animation-delay: 1000ms; -webkit-animation-timing-function: ease; -webkit-animation-iteration-count: infinite; -webkit-animation-fill-mode: both; width: 4860px;
+}
+@-webkit-keyframes slide-by-transform { 11% {-webkit-transform: translate3d(0, 0, 0);} 11% {-webkit-transform: translate3d(-270, 0, 0);} 11% {-webkit-transform: translate3d(-540, 0, 0);} 11% {-webkit-transform: translate3d(-810, 0, 0);} 11% {-webkit-transform: translate3d(-1080, 0, 0);} 11% {-webkit-transform: translate3d(-1350px, 0, 0);} 22% {-webkit-transform: translate3d(-1620px, 0, 0);} 33% {-webkit-transform: translate3d(-1890px, 0, 0);} 44% {-webkit-transform: translate3d(-2160px, 0, 0);} 55% {-webkit-transform: translate3d(-2430px, 0, 0);} 66% {-webkit-transform: translate3d(-2700px, 0, 0);} 77% {-webkit-transform: translate3d(-2970px, 0, 0);} 88% {-webkit-transform: translate3d(-3240px, 0, 0);} 100% {-webkit-transform: translate3d(-3510px, 0, 0);}
+}
+.ao-tour-single-event__reviews { padding: 10px 10px 10px 10px !important;
+}
+.widget-container ul { margin-bottom: 10px; margin-left: -40px;
+}

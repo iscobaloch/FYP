@@ -1,0 +1,68 @@
+from flask_sqlalchemy import SQLAlchemy
+from app import datetime
+
+db = SQLAlchemy()
+
+class Tbltourpackages(db.Model):
+    __tablename__ = 'tbltourpackages'
+    PackageId = db.Column(db.Integer, primary_key=True)
+    PackageName = db.Column(db.String(150), nullable=False)
+    PackageLocation = db.Column(db.String(120), nullable=False)
+    PackagePrice = db.Column(db.String(15), nullable=True)
+    PackageDetails = db.Column(db.String(1000), nullable=False)
+    PackageImage = db.Column(db.String(120), nullable=False)
+    Creationdate = db.Column(db.DATE, default=datetime.now())
+    Duration = db.Column(db.Integer, nullable=True)
+    Accommodation = db.Column(db.String(120), nullable=False)
+    Meal = db.Column(db.String(120), nullable=False)
+    Transport = db.Column(db.String(120), nullable=False)
+
+class Tblbooking(db.Model):
+    __tablename__ = 'tblbooking'
+    BookingId = db.Column(db.Integer, primary_key=True)
+    PackageId = db.Column(db.Integer, nullable=False)
+    UserId = db.Column(db.Integer, nullable=False)
+    FromDate = db.Column(db.String(120), nullable=False)
+    Comment = db.Column(db.String(5000), nullable=True)
+    RegDate= db.Column(db.DATE, default=datetime.now())
+    status=  db.Column(db.String(120), nullable=True)
+    CancelledBy=  db.Column(db.String(120), nullable=False)
+
+#
+# class TblAbout(db.Model):
+#     __tablename__ = 'about'
+#     id = db.Column(db.Integer, primary_key=True)
+#     about = db.Column(db.String(100), nullable=False)
+#
+# class Category(db.Model):
+#     __tablename__= 'category'
+#     cid = db.Column(db.Integer, primary_key=True)
+#     cname = db.Column(db.String(80), nullable=False)
+#
+# class Tblposts(db.Model):
+#     __tablename__ = 'posts'
+#     BookingId = db.Column(db.Integer, primary_key=True)
+#     PackageId = db.Column(db.Integer, nullable=False)
+#     UserId = db.Column(db.Integer, nullable=False)
+#     FromDate = db.Column(db.String(120), nullable=False)
+#     Comment = db.Column(db.String(5000), nullable=True)
+#     RegDate= db.Column(db.DATE, default=datetime.now())
+#     status=  db.Column(db.String(120), nullable=True)
+#     CancelledBy=  db.Column(db.String(120), nullable=False)
+
+#
+#
+class User(db.Model):
+    __tablename__ = 'tblusers'
+    id = db.Column(db.Integer, primary_key=True)
+    fullname = db.Column(db.String(100), nullable=False)
+    mobile = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(200), nullable=False)
+#
+class Admin(db.Model):
+    __tablename__='admin'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(300), nullable=False)
+    email = db.Column(db.String(200), nullable=False)
