@@ -878,11 +878,14 @@ def change_password():
 def logout():
     if session.get('admin'):
         session.clear()
-        error= "YOUR SESSION HAS BEEN LOGGED OUT"
-        return render_template(('/admin/pages-login.html'), error=error)
+        flash('YOUR SESSION HAS BEEN LOGGED OUT')
+        return redirect(url_for('login'))
+    elif session.get('user'):
+        session.clear()
+        flash('YOUR SESSION HAS BEEN LOGGED OUT')
+        return render_template(('user/pages-login.html'))
     else:
-        flash("You session is already logged out")
-    return redirect(url_for('login'))
+        return redirect(url_for('home'))
 #
 #
 # # create  custom Error pages
