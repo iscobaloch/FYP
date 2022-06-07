@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title%} TMS - HOME PAGE {% endblock %}
+ {% block body %}
+
+<!-- top-header -->
+<ao-tour-header-breadcrumb> <div class="ao-tour-page_header"> <div class="container"> <div class="ao-tour-page__meta-wrapper">
+  <ul class="ao-tour-page__breadcrumbs">  <li> <a href="{{url_for('home')}}">Home</a>  </li>
+    <li>  <span>{{t.type.capitalize()}}</span> </li> </ul>  <a href=""><h1 class="ao-tour-page__title">{{t.type.capitalize()}}</h1></a> </div> </div> </div>
+  </ao-tour-header-breadcrumb>
+<!--- /banner-1 ---->
+<!--- privacy ---->
+<div class="privacy">
+	<div class="container">
+
+			<h3 class="wow fadeInDown animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">
+		<div class="ao-tour-special-heading-2 text-center">
+			<h1>{{t.type.capitalize()}}</h1>
+				</div>
+	</h3>
+
+
+	<p>
+	{{t.detail |safe}}
+
+
+	</p>
+
+	</div>
+</div>
+
+
+{% endblock %}
