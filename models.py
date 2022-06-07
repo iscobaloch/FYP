@@ -28,12 +28,16 @@ class Tblbooking(db.Model):
     status=  db.Column(db.String(120), nullable=True)
     CancelledBy=  db.Column(db.String(120), nullable=False)
 
-#
-# class TblAbout(db.Model):
-#     __tablename__ = 'about'
-#     id = db.Column(db.Integer, primary_key=True)
-#     about = db.Column(db.String(100), nullable=False)
-#
+
+
+
+class About(db.Model):
+    __tablename__ = 'about'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(100), nullable=False)
+
+
 # class Category(db.Model):
 #     __tablename__= 'category'
 #     cid = db.Column(db.Integer, primary_key=True)
@@ -59,6 +63,17 @@ class User(db.Model):
     mobile = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(200), nullable=False)
+    regdate = db.Column(db.DATE, default=datetime.now())
+
+class Chat(db.Model):
+    __tablename__ = 'chat'
+    id = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.Integer, nullable=False)
+    sender = db.Column(db.Integer, nullable=False)
+    message = db.Column(db.String(300), nullable=False)
+    time = db.Column(db.DATE, default=datetime.now())
+    status = db.Column(db.Integer, nullable=False)
+
 #
 class Admin(db.Model):
     __tablename__='admin'
@@ -66,3 +81,9 @@ class Admin(db.Model):
     username = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(300), nullable=False)
     email = db.Column(db.String(200), nullable=False)
+
+class Tblpages(db.Model):
+    __tablename__='tblpages'
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(100), nullable=False)
+    detail = db.Column(db.String(3000), nullable=False)

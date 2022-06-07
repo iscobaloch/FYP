@@ -31,10 +31,8 @@
                                     <div class="card-body">
                                         <h4 class="header-title">Basic Data Table</h4>
                                         <p class="text-muted font-14">
-                                            DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction
-                                            function:
-                                            <code>$().DataTable();</code>. KeyTable provides Excel like cell navigation on any table. Events (focus, blur, action etc) can be assigned to individual
-                                            cells, columns, rows or all cells.
+                                          {% for message in get_flashed_messages()%}
+                                       <p style='color:green'>{{message}}</p>{%endfor%}
                                         </p>
 
 
@@ -46,6 +44,7 @@
                                                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                                                     <thead>
                                                         <tr>
+                                                            <th hidden>S#</th>
                                                             <th>Booking ID</th>
                                                             <th>Package Name</th>
                                                             <th>BOOKED BY</th>
@@ -61,6 +60,7 @@
                                                     <tbody>
                                                       {% for b in booking%}
                                                         <tr>
+                                                          <td hidden>{{loop.index}}</td>
                                                             <td>BK#-{{b.Tblbooking.BookingId}}</td>
                                                             <td>{{b.Tbltourpackages.PackageName}}</td>
                                                             <td>{{b.User.fullname}}</td>
@@ -74,10 +74,17 @@
                                                               {% elif b.Tblbooking.status==2%}
                                                               <span class="badge bg-danger">Disapproved</span>
                                                               {%else%}
-<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Primary</button>
-<div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Action</a>
-</div>
+
+  <form method="post">
+    <input type="hidden" name="bkid" id="bkid" value="{{b.Tblbooking.BookingId}}">
+    <select name="myselect" class="btn btn-outline-primary btn-rounded" aria-haspopup="true" aria-expanded="false" id="myselect" onchange="this.form.submit()">
+
+           <option  disabled selected hidden>ACTION</option>
+           <option value="1">Approve</option>
+           <option value="2">Disapprove</option>
+       </select>
+
+      </form>
                                                             </h3> {%endif%}</td>
 
 

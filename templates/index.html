@@ -84,7 +84,7 @@
                         <section class="ao-tour-event-grid">
                           <div class="ao-tour-event-grid__primary">
                 <div class="ao-tour-sale-tag">latest</div>
-         <a class="ao-tour-event-grid__figure-link" style="background-image: url({{ url_for('static', filename=fname) }});" title="{{packs.PackageName}}" href="https://www.getout.pk/trip/hunza-tour-packages/">
+         <a class="ao-tour-event-grid__figure-link" style="background-image: url({{ url_for('static', filename=fname) }});" title="{{packs.PackageName}}" href="trip_id={{packs.PackageId}}">
            <img src="{{ url_for('static', filename=fname) }}" alt="{{packs.PackageName}}r">
            <h1 class="ao-tour-event-grid__title">{{packs.PackageName}}</h1> </a>
             <div class="ao-tour-event-grid__secondary">
@@ -94,10 +94,10 @@
 
                 </div>
                  <div class="ao-tour-event-grid__secondary-bottom">
-                 <div class="ao-tour-event-grid__date"> <i class="icon-ao-tour-calendar icon-ao-tour"></i> May 6, 2022 </div>
-                <div class="ao-tour-event-grid__duration"> <i class="icon-ao-tour-watch icon-ao-tour"></i> 5 Days, 4 Nights </div>
+                 <div class="ao-tour-event-grid__date"> <i class="icon-ao-tour-calendar icon-ao-tour"></i> {{packs.Creationdate}} </div>
+                <div class="ao-tour-event-grid__duration"> <i class="icon-ao-tour-watch icon-ao-tour"></i> {% if packs.Duration<2 %} {{packs.Duration}} Day {%else%} {{packs.Duration}} Days {% endif %} </div>
                  </div>
-               </div> <a class="ao-tour-event-grid__action" href="trip_id={{packs.Packageid}}">Tour Details</a> </section>
+               </div> <a class="ao-tour-event-grid__action" href="trip_id={{packs.PackageId}}">Tour Details</a> </section>
                  </ao-tour-event-card-brief>
                  </div>
 {% endfor%}
@@ -113,7 +113,7 @@
                                 					<div class="clearfix"></div>
                                 			</div>
 
-                                <div><a href="package-list.php" class="view">View More Packages</a></div>
+                                <div><a href="{{url_for('trips')}}" class="view">View More Packages</a></div>
                                 </div>
                                 			<div class="clearfix"></div>
                                 	</div>

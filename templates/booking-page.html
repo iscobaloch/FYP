@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %}
 {% block title%} TMS - HOME PAGE {% endblock %}
  {% block body %}
@@ -25,9 +23,8 @@
 <h1 class="ao-tour-page__title">{{result.PackageName}}</h1>
 <a class="ao-tour-page__vendor">Pak Adventures</a> <a1 class="ao-tour-page__location">
 <i class="icon-ao-tour-pin icon-ao-tour"></i><aa class="custom-category">
-<a href="../../trips/khyber-pakhtunkhwa/index.html" rel="category tag">Khyber Pakhtunkhwa</a> /
-<a href="../../trips/swat/index.html" rel="category tag">Swat</a></aa> </a1> <a class="ao-tour-page__duration">
-<i class="icon-ao-tour-watch icon-ao-tour"></i> 3 Days Trip</a>
+<a href="../../trips/khyber-pakhtunkhwa/index.html" rel="category tag">{{result.PackageLocation}}</a></aa> </a1> <a class="ao-tour-page__duration">
+<i class="icon-ao-tour-watch icon-ao-tour"></i> {% if result.Duration<2 %} {{result.Duration}} Day {%else%} {{result.Duration}} Days {% endif %}</a>
 <section class="ao-tour-single-event__gallery"> <slick-carousel _nghost-c2="" class="slick-initialized slick-slider">
   <div class="row hidden-xs"> <div class="col-md-4" for="zoomCheck0">
     <input type="checkbox" id="zoomCheck0"> <label class="ch0" for="zoomCheck0">
@@ -100,10 +97,19 @@
 <button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
 <span>25</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
 <button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
-<span>26</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
+<span>26</span></button></td>
+<td class="text-center" role="gridcell" id="datepicker--3421-8">
 <button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm disabled btn-default" disabled="">
-<span>27</span></button></td><td class="text-center" role="gridcell" id="datepicker--3421-8">
-<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm ao-tour-enabled-date__calendar active btn-default">28</span></button></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr> </table> </daypicker> <monthpicker tabindex="0">  </monthpicker> <yearpicker tabindex="0">  </yearpicker> </div> </datepicker-inner> </datepicker> </div>
+<span>27</span></button></td>
+<td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm ao-tour-enabled-date__calendar active btn-default">28</span></button></td>
+<td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm ao-tour-enabled-date__calendar active btn-default">29</span></button></td>
+<td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm ao-tour-enabled-date__calendar active btn-default">30</span></button></td>
+<td class="text-center" role="gridcell" id="datepicker--3421-8">
+<button style="min-width:100%;" tabindex="-1" type="button" class="btn btn-sm ao-tour-enabled-date__calendar active btn-default">31</span></button></td>
+<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr> </table> </daypicker> <monthpicker tabindex="0">  </monthpicker> <yearpicker tabindex="0">  </yearpicker> </div> </datepicker-inner> </datepicker> </div>
 <button class="booknow btn ao-tour-page__event-book-btn ao-tour-btn-primary">Book Now </button> </div>  </div> </div> </div> </div> </div> <div class="ao-tour-single-event"> <div class="ao-tour-single-event__nav-wrap hidden-xs">
 <div class="ao-tour-single-event__nav" ao-tour-sticky-booking-navbar="">
 <div class="container">
@@ -122,7 +128,7 @@
 <h2 class="ao-tour-heading-1">Description</h2>
 <markdown _nghost-c11="">
 <p>
-{{result.PackageDetails}}
+{{result.PackageDetails | safe}}
   <br /></p>
 </markdown>
 <style> input[type=checkbox] { display: none;
@@ -142,7 +148,7 @@ input[type=checkbox]:checked ~ .ch3 > img { transform: scale(2.5) translate(-50%
 <div class="col-md-4"><img style="width:100%; height:auto; border-radius: 0px; margin-bottom: 10px;" src="#"></div> </div>
 
 
-<i aria-hidden="true" class="fa fa-clock-o"></i> Duration:</strong> 3 Days Trip</p> </section>
+<i aria-hidden="true" class="fa fa-clock-o"></i> Duration:</strong> {% if result.Duration<2 %} {{result.Duration}} Day Trip {%else%} {{result.Duration}} Days Trip {% endif %}</p> </section>
 
 <section class="ao-tour-single-event__facilities ao-tour-single-event__section" id="facilitiesSection">
 <h2 class="ao-tour-heading-1">Facilities</h2>
@@ -202,8 +208,8 @@ a:hover { cursor: pointer; outline: 0; border: 0;
   <div class="container">
   <div class="ao-tour-form-wrapper ao-tour-mma-form"><article id="post-11" class="post-11 page type-page status-publish hentry">
   <div class="entry-content">
+       {% if session.get('user') %}
   <form id="contact-form" class="ng-untouched ng-pristine ng-invalid">
-  <input type="hidden" name="action" value="contact_send" />
   <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">Booking Details</h2>
   <label class="ao-tour-form-label">Your Full Name</label>
   <input class="form-control ng-pristine ng-invalid ng-touched" name="name" required placeholder="Please enter Full Name" type="text" />
@@ -213,7 +219,7 @@ a:hover { cursor: pointer; outline: 0; border: 0;
   <input class="form-control ng-pristine ng-invalid ng-touched" name="mobile" required placeholder="Please enter mobile" type="text" />
   <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">When would you like to go?</h2> <div class="row">
   <div class="col-sm-6"> <div class="form-group">
-  <label class="ao-tour-form-label">Departure City</label>
+  <label class="ao-tour-form-label">Your City</label>
   <input class="form-control ng-pristine ng-valid ng-touched" name="depcity" required placeholder="Please enter Departure City" type="text">  </div> </div>
   <div class="col-sm-6"> <div class="form-group ao-tour-datepicker" dropdown="" dropdown-append-to-body="">
   <label class="ao-tour-form-label">Date</label>
@@ -222,7 +228,12 @@ a:hover { cursor: pointer; outline: 0; border: 0;
   <br><br>
   <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">Booking Details</h2>
   <textarea class="form-control ng-pristine ng-invalid ng-touched" name="message" required placeholder="Type your further details here"></textarea>
-  <input class="btn ao-tour-btn-primary ao-tour-btn__mma-btn" style="padding: 0px;" type="submit" value="Plan it for me!" /> </form> </div>
+  <input class="btn ao-tour-btn-primary ao-tour-btn__mma-btn" style="padding: 0px;" type="submit" value="Plan it for me!" /> </form>
+  {% else%}
+  <h4 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">BOOK THIS TOUR NOW </h4>
+  <a href="{{url_for('login')}}"><button type="button" name="button" class="btn ao-tour-btn-primary ao-tour-btn_mma-btn"  style="padding: 10px;">PLEASE LOGIN FIRST</button></a>
+  {%endif%}
+</div>
   <div id="ajax-content1"></div>
   <div id="ajax-content2"></div>
   <script type="text/javascript"> jQuery(document).ready(function ($) { var is_sending = false, failure_message = 'Whoops, looks like there was a problem. Please try again later.'; $('#contact-form').submit(function (e) { if (is_sending || !validateInputs()) { return false; // Don't let someone submit the form while it is in-progress... } e.preventDefault(); // Prevent the default form submit $this = $(this); // Cache this $.ajax({ url: 'https://www.pakadventures.pk/wp-admin/admin-ajax.php', // Let WordPress figure this url out... cache: false, type: 'post', dataType: 'JSON', // Set this so we don't need to decode the response... data: $this.serialize(), // One-liner form data prep... beforeSend: function () { is_sending = true; $('#ajax-content1').append('<div class="text-center"><h3>Please Wait!</h3></div>'); }, error: handleFormError, success: function (data) { if (data.status === 'success') { // Here, you could trigger a success message $('#ajax-content1').hide(); $('#ajax-content2').append('<div class="text-center"><h3>Your Message Has Been Sent Successfully!</h3><p>Our Team Reply You As Soon As Possible!.</p></div>'); document.getElementById("contact-form").reset(); } else { handleFormError(); // If we don't get the expected response, it's an error... } } }); }); function handleFormError () { is_sending = false; // Reset the is_sending var so they can try again... alert(failure_message); } function validateInputs () { var $name = $('#contact-form > input[name="name"]').val(), $email = $('#contact-form > input[name="email"]').val(); if (!$name) { alert('Before sending, please make sure to provide your name,.'); return false; } if (!$email) { alert('Before sending, please make sure to provide your email.'); return false; } return true; } }); </script> </article></div>

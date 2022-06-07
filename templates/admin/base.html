@@ -8,7 +8,8 @@
         <meta content="Coderthemes" name="author">
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{url_for('static', filename='assets/images/favicon.ico')}}">
-
+        <!-- CK EDITOR -->
+        <script src="{{url_for('static', filename='ckeditor/ckeditor.js')}}"></script>
 
         <!-- third party css -->
         <link href="{{url_for('static', filename='assets/css/vendor/dataTables.bootstrap5.css')}}" rel="stylesheet" type="text/css">
@@ -38,7 +39,7 @@
             <div class="leftside-menu">
 
                 <!-- LOGO -->
-                <a href="index.html" class="logo text-center logo-light">
+                <a href="{{url_for('admin')}}" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="{{url_for('static', filename='assets/images/logo.png')}}" alt="" height="16">
                     </span>
@@ -66,19 +67,21 @@
                         <li class="side-nav-title side-nav-item">Apps</li>
 
                       <li class="side-nav-item">
-                            <a href="apps-chat.html" class="side-nav-link">
+                            <a href="{{url_for('help')}}" class="side-nav-link">
                                 <i class="uil-comments-alt"></i>
+                                {%if noti%}
+                                <span class="badge bg-success float-end">{{noti|count}}</span> {%endif%}
                                 <span> Chat </span>
                             </a>
                         </li>
 
                         <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                            <a data-bs-toggle="collapse" href="#Tourpackages" aria-expanded="false" aria-controls="Tourpackages" class="side-nav-link">
                                 <i class="uil-store"></i>
                                 <span> Tour Packages </span>
                                 <span class="menu-arrow"></span>
                             </a>
-                            <div class="collapse" id="sidebarEcommerce">
+                            <div class="collapse" id="Tourpackages">
                                 <ul class="side-nav-second-level">
                                     <li>
                                         <a href="{{url_for('add_tour')}}">Add Tour</a>
@@ -96,9 +99,15 @@
                                   <span> Manage Booking </span>
                               </a>
                           </li>
+                          <li class="side-nav-item">
+                                <a href="{{url_for('manage_users')}}" class="side-nav-link">
+                                    <i class="uil-comments-alt"></i>
+                                    <span> Manage Users </span>
+                                </a>
+                            </li>
 
                           <li class="side-nav-item">
-                                <a href="{{url_for('login')}}" class="side-nav-link">
+                                <a href="{{url_for('help')}}" class="side-nav-link">
                                     <i class="uil-book-alt"></i>
                                     <span> Contact Help </span>
                                 </a>
@@ -112,90 +121,19 @@
                             <div class="collapse" id="sidebarPages">
                                 <ul class="side-nav-second-level">
                                     <li>
-                                        <a href="{{url_for('login')}}">About Us</a>
+                                        <a href="{{url_for('edit_contact')}}">Contact Info</a>
                                     </li>
                                     <li>
-                                        <a href="{{url_for('login')}}">Contact Us</a>
+                                        <a href="/page_type=aboutus">About Us</a>
                                     </li>
                                     <li>
-                                        <a href="{{url_for('login')}}">Privacy & Policy</a>
+                                        <a href="/page_type=privacy">Privacy & Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="../page_type=terms">Terms of Use</a>
                                     </li>
 
-                                    <li class="side-nav-item">
-                                        <a data-bs-toggle="collapse" href="#sidebarPagesAuth" aria-expanded="false" aria-controls="sidebarPagesAuth">
-                                            <span> Authentication </span>
-                                            <span class="menu-arrow"></span>
-                                        </a>
-                                        <div class="collapse" id="sidebarPagesAuth">
-                                            <ul class="side-nav-third-level">
-                                                <li>
-                                                    <a href="pages-login.html">Login</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-login-2.html">Login 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-register.html">Register</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-register-2.html">Register 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-logout.html">Logout</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-logout-2.html">Logout 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-recoverpw.html">Recover Password</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-recoverpw-2.html">Recover Password 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-lock-screen.html">Lock Screen</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-lock-screen-2.html">Lock Screen 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-confirm-mail.html">Confirm Mail</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pages-confirm-mail-2.html">Confirm Mail 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="side-nav-item">
-                                        <a data-bs-toggle="collapse" href="#sidebarPagesError" aria-expanded="false" aria-controls="sidebarPagesError">
-                                            <span> Error </span>
-                                            <span class="menu-arrow"></span>
-                                        </a>
-                                        <div class="collapse" id="sidebarPagesError">
-                                            <ul class="side-nav-third-level">
-                                                <li>
-                                                <a href="pages-404.html">Error 404</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages-404-alt.html">Error 404-alt</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages-500.html">Error 500</a>
-                                            </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="pages-starter.html">Starter Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages-preloader.html">With Preloader</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages-timeline.html">Timeline</a>
-                                    </li>
-                                </ul>
+
                             </div>
                         </li>
 
@@ -229,97 +167,6 @@
                                 </div>
                             </li>
                             <li class="dropdown notification-list">
-                                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                    <i class="dripicons-bell noti-icon"></i>
-                                    <span class="noti-icon-badge"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
-
-                                    <!-- item-->
-                                    <div class="dropdown-item noti-title">
-                                        <h5 class="m-0">
-                                            <span class="float-end">
-                                                <a href="javascript: void(0);" class="text-dark">
-                                                    <small>Clear All</small>
-                                                </a>
-                                            </span>Notification
-                                        </h5>
-                                    </div>
-
-                                    <div style="max-height: 230px;" data-simplebar="">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-primary">
-                                                <i class="mdi mdi-comment-account-outline"></i>
-                                            </div>
-                                            <p class="notify-details">Caleb Flakelar commented on Admin
-                                                <small class="text-muted">1 min ago</small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-info">
-                                                <i class="mdi mdi-account-plus"></i>
-                                            </div>
-                                            <p class="notify-details">New user registered.
-                                                <small class="text-muted">5 hours ago</small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon">
-                                                <img src="{{url_for('static', filename='assets/images/users/avatar-2.jpg')}}" class="img-fluid rounded-circle" alt=""> </div>
-                                            <p class="notify-details">Cristina Pride</p>
-                                            <p class="text-muted mb-0 user-msg">
-                                                <small>Hi, How are you? What about our next meeting</small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-primary">
-                                                <i class="mdi mdi-comment-account-outline"></i>
-                                            </div>
-                                            <p class="notify-details">Caleb Flakelar commented on Admin
-                                                <small class="text-muted">4 days ago</small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon">
-                                                <img src="{{url_for('static', filename='assets/images/users/avatar-4.jpg')}}" class="img-fluid rounded-circle" alt=""> </div>
-                                            <p class="notify-details">Karen Robinson</p>
-                                            <p class="text-muted mb-0 user-msg">
-                                                <small>Wow ! this admin looks good and awesome design</small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-info">
-                                                <i class="mdi mdi-heart"></i>
-                                            </div>
-                                            <p class="notify-details">Carlos Crouch liked
-                                                <b>Admin</b>
-                                                <small class="text-muted">13 days ago</small>
-                                            </p>
-                                        </a>
-                                    </div>
-
-                                    <!-- All-->
-                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                                        View All
-                                    </a>
-
-                                </div>
-                            </li>
-
-
-
-                            <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar">
                                         <img src="{{url_for('static', filename='assets/images/users/avatar-1.jpg')}}" alt="user-image" class="rounded-circle">
@@ -331,36 +178,21 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                                     <!-- item-->
-                                    <div class=" dropdown-header noti-title">
-                                        <h6 class="text-overflow m-0">Welcome !</h6>
-                                    </div>
-
-                                    <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <i class="mdi mdi-account-circle me-1"></i>
-                                        <span>My Account</span>
+                                        <span>Account Settings</span>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="{{url_for('change_password')}}" class="dropdown-item notify-item">
                                         <i class="mdi mdi-account-edit me-1"></i>
-                                        <span>Settings</span>
+                                        <span>Change Password</span>
                                     </a>
 
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-lifebuoy me-1"></i>
-                                        <span>Support</span>
-                                    </a>
+
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-lock-outline me-1"></i>
-                                        <span>Lock Screen</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="{{url_for('logout')}}" class="dropdown-item notify-item">
                                         <i class="mdi mdi-logout me-1"></i>
                                         <span>Logout</span>
                                     </a>
@@ -431,11 +263,6 @@
 
 
 
-<!-- quill js -->
-<script src="{{url_for('static', filename='assets/js/vendor/quill.min.js')}}"></script>
-<!-- Init js-->
-<script src="{{url_for('static', filename='assets/js/pages/demo.quilljs.js')}}"></script>
-
 <!-- SimpleMDE js -->
 <script src="{{url_for('static', filename='assets/js/vendor/simplemde.min.js')}}"></script>
 
@@ -452,16 +279,12 @@
 <!-- Chat js -->
 <script src="{{url_for('static', filename='assets/js/ui/component.chat.js')}}"></script>
 
-<!-- Todo js -->
-<script src="{{url_for('static', filename='assets/js/ui/component.todo.js')}}"></script>
-
 <!-- demo:js -->
 <script src="{{url_for('static', filename='assets/js/pages/demo.widgets.js')}}"></script>
 <!-- demo end -->
 
 <script>
-snow-editor.replace('pdetails');
-
+CKEDITOR.replace('editor');
 </script>
 
 <!-- third party js -->
@@ -479,7 +302,7 @@ snow-editor.replace('pdetails');
 <!-- third party js ends -->
 
 <!-- demo app -->
-<script src="assets/js/pages/demo.datatable-init.js"></script>
+<script src="{{url_for('static', filename='assets/js/pages/demo.datatable-init.js')}}"></script>
 <!-- end demo js-->
 
 </body>

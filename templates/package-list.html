@@ -22,31 +22,35 @@
                <div> <ao-tour-event-box> <div style="cursor:pointer">
 
 
-              <section class="ao-tour-event-list" href="../trip/parasailing-in-karachi/index.html">
+              <section class="ao-tour-event-list" href="trip_id={{packs.PackageId}}">
                  <style> .ao-tour-event-list .ao-tour-event-list__reviews { display: none; } </style> <a class="ao-tour-event-list__reviews">
               <i class="icon-ao-tour-star icon-ao-tour"></i> 6.5 </a>
-            <a class="ao-tour-event-list__figure" style="background-image: url({{ url_for('static', filename=fname) }});" title="{{packs.PackageName}}" href="../trip/parasailing-in-karachi/index.html">
-              <img src="../wp-content/uploads/2019/02/parasailing-in-karachi.jpg" alt="{{packs.PackageName}}i"> </a>
+            <a class="ao-tour-event-list__figure" style="background-image: url({{ url_for('static', filename=fname) }});" title="{{packs.PackageName}}" href="trip_id={{packs.PackageId}}">
+              <img src="{{ url_for('static', filename=fname) }}" alt="{{packs.PackageName}}"> </a>
             <div class="ao-tour-event-list__details"> <div class="ao-tour-event-list__details-primary">
-              <h1 class="ao-tour-event-list__title"><a href="../trip/parasailing-in-karachi/index.html">{{packs.PackageName}}</a></h1>  </div>
-            <a href="../trip/parasailing-in-karachi/index.html" style="color: #373737;">
+              <h1 class="ao-tour-event-list__title"><a href="trip_id={{packs.PackageId}}">{{packs.PackageName}}</a></h1>  </div>
+            <a href="trip_id={{packs.PackageId}}" style="color: #373737;">
               <div class="ao-tour-event-list__details-base">
                 <div class="ao-tour-event-list__meta-row hightlighted">
                   <div class="ao-tour-event-list__meta-col col-sm-6">
                     <i class="icon-ao-tour-calendar icon-ao-tour"></i><b>{{packs.Creationdate}}</b> </div>
-                    <div class="ao-tour-event-list__meta-col col-sm-6"><i class="icon-ao-tour-watch icon-ao-tour"></i><b>1 Day Trip</b></div> </div>
+                    <div class="ao-tour-event-list__meta-col col-sm-6"><i class="icon-ao-tour-watch icon-ao-tour"></i><b> {% if packs.Duration<2 %} {{packs.Duration}} Day {%else%} {{packs.Duration}} Days {% endif %}</b></div> </div>
                     <div class="ao-tour-event-list__meta-row"> <div class="ao-tour-event-list__meta-col col-sm-6">
                       <i class="icon-ao-tour-pay icon-ao-tour"></i> Cash on delivery, Bank transfer</div> <div class="ao-tour-event-list__meta-col col-sm-6">
-                         <i class="icon-ao-tour icon-009-holidays"></i> Accommodation </div> </div> <div class="ao-tour-event-list__meta-row">
-                           <div class="ao-tour-event-list__meta-col col-sm-6"> <i class="icon-ao-tour icon-transport"></i> Transport </div>
-                            <div class="ao-tour-event-list__meta-col col-sm-6"> <i class="icon-ao-tour icon-meals"></i> Standard Meals </div>
+                        {% if packs.Accommodation ==1 %}
+                         <i class="icon-ao-tour icon-009-holidays"></i> Accommodation {%endif%}</div> </div>
+                         <div class="ao-tour-event-list__meta-row">
+
+                           <div class="ao-tour-event-list__meta-col col-sm-6"> {% if packs.Transport ==1 %} <i class="icon-ao-tour icon-transport"></i>  Transport {%endif%}</div>
+
+                            <div class="ao-tour-event-list__meta-col col-sm-6"> {% if packs.Meal ==1 %}<i class="icon-ao-tour icon-meals"></i> Standard Meals {%endif%}</div>
                            <div class="ao-tour-event-list__meta-col col-sm-6"> </div> </div> </div>
-                           <div class="ao-tour-event-list__details-secondary"> <p><b>Details:</b>{{packs.PackageDetails [0:260]}}... </p> </div></a> </div>
+                           <div class="ao-tour-event-list__details-secondary"> <p><b>Details:</b>{{packs.PackageDetails [0:260] | safe }}... </p> </div></a> </div>
                            <div class="ao-tour-event-list__cta"> <div class="ao-tour-event-list__cta-inner">
-                             <div class="ao-tour-event-list__price"> <a href="../trip/parasailing-in-karachi/index.html" >
+                             <div class="ao-tour-event-list__price"> <a href="trip_id={{packs.PackageId}}" >
                                <div class="ao-tour-event-list__price-label">Starting from</div>
                                <div class="ao-tour-event-list__price-tag"><sup>Rs.</sup>{{packs.PackagePrice}}</div> <div class="ao-tour-event-list__price-person">per person</div> </a> </div>
-                           <a class="btn ao-tour-btn-primary ao-tour-event-list__cta-btn" href="../trip/parasailing-in-karachi/index.html">Book Now </a> </div>
+                           <a class="btn ao-tour-btn-primary ao-tour-event-list__cta-btn" href="trip_id={{packs.PackageId}}">Book Now </a> </div>
                            <svg xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" class="ao-tour-event-list__cta-angle" enable-background="new 0 0 49.5 400" version="1.1" viewBox="0 0 49.5 400" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"> <polygon points="49.5,400 0,400 20,0 49.5,0 "></polygon> </svg> </div>
                          </section> </div>
 

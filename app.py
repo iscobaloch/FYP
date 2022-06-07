@@ -19,7 +19,7 @@ db = SQLAlchemy()
 app.config['WTF_CSRF_SECRET_KEY'] = "b'f\xfa\x8b{X\x8b\x9eM\x83l\x19\xad\x84\x08\xaa"
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:@localhost:3306/tms"
 app.config['SECRET_KEY'] = "b'f\xfa\x8b{X\x8b\x9eM\x83l\x19\xad\x84\x08\xaa"
-app.config['UPLOAD_FOLDER'] = os.path.join(basedir, 'static\\upload\\thumbnail')
+app.config['UPLOAD_FOLDER'] = os.path.join(basedir, 'static\\packimages\\')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
@@ -56,7 +56,7 @@ def contact():
 
 @app.route("/trip_id=<id>")
 def booking(id):
-    result = db.session.query(Tbltourpackages).filter(Tbltourpackages.Packageid==id).first()
+    result = db.session.query(Tbltourpackages).filter(Tbltourpackages.PackageId==id).first()
 
     return render_template('booking-page.html',  result=result)
 
@@ -113,8 +113,8 @@ def login():
             adm = Admin.query.filter_by(username=username).first()
             if pbkdf2_sha256.verify(password, adm.password):
                 session['admin'] = adm.username
-                session['id']= adm.id
-                return redirect(url_for('trips'))
+                session['aid']= adm.id
+                return redirect(url_for('admin'))
             else:
                 error='Invalid Username or Password'
                 return render_template("admin/pages-login.html", error=error)
@@ -126,7 +126,7 @@ def admin():
     if session.get('admin'):
         member=User.query.count()
         cats = Tbltourpackages.query.all()
-        return render_template("admin/widgets.html",cats=cats, member=member)
+        return render_template("admin/admin.html",cats=cats, member=member)
     else:
         flash('LOGIN FIRST TO ACCESS DASHBOARD')
         return redirect(url_for('login'))
@@ -141,11 +141,10 @@ def add_tour():
             meal = request.form.get('meal')
             accommodation = request.form.get('accommodation')
             duration = request.form.get('duration')
-            pdetails = request.form.get('pdetails')
+            pdetails = request.form.get('editor')
             price = request.form.get('price')
             f = save_images(request.files.get('timage'))
             flash("THIS ARTICLE HAS BEEN PUBLISHED")
-            print(pdetails)
             tour = Tbltourpackages(PackageName=title, PackageDetails=pdetails, PackageLocation=location, Transport=transport, Meal=meal,Duration=duration,
                                    Accommodation=accommodation,PackagePrice=price, PackageImage =f)
             db.session.add(tour)
@@ -158,13 +157,89 @@ def add_tour():
         flash('LOGIN FIRST TO PROCEED')
         return render_template("admin/pages-login.html")
 
-@app.route("/manage-bookings")
+@app.route("/manage-tour/id=<id>/action=edit", methods=['POST', 'GET'])
+def edit_tour(id):
+    if session.get('admin'):
+        if request.method == 'POST':
+            img= request.files.get('timage')
+            title = request.form.get('title')
+            location = request.form.get('location')
+            transport = request.form.get('transport')
+            meal = request.form.get('meal')
+            accommodation = request.form.get('accommodation')
+            duration = request.form.get('duration')
+            tdetails = request.form.get('editor')
+            price = request.form.get('price')
+            hello= Tbltourpackages.query.filter_by(PackageId=id).first()
+            _, file_extension = os.path.splitext(img.filename)
+            if ('.jpg' or '.jpeg' or '.png') in file_extension:
+                updte = db.session.query(Tbltourpackages).filter_by(PackageId=id).first()
+                os.remove(app.config['UPLOAD_FOLDER']+updte.PackageImage)
+                updte.PackageName = title
+                updte.PackageLocation = location
+                updte.PackageImage = save_images(request.files.get('timage'))
+                updte.Transport = transport
+                updte.Meal = meal
+                updte.Accommodation = accommodation
+                updte.Duration = duration
+                updte.PackagePrice = price
+                updte.PackageDetails = tdetails
+                db.session.commit()
+                flash("CHANGES WERE MADE SUCCESSFULLY")
+                return redirect(url_for('manage_tours'))
+            else:
+                updte = db.session.query(Tbltourpackages).filter_by(PackageId=id).first()
+                updte.PackageName = title
+                updte.PackageLocation = location
+                updte.PackageImage = hello.PackageImage
+                updte.Transport = transport
+                updte.Meal = meal
+                updte.Accommodation = accommodation
+                updte.Duration = duration
+                updte.PackagePrice = price
+                updte.PackageDetails = tdetails
+                db.session.commit()
+                flash("POST AS BEEN UPDATED")
+                return redirect(url_for('manage_tours'))
+        else:
+            t = db.session.query(Tbltourpackages).filter(Tbltourpackages.PackageId==id).first()
+            return render_template("admin/edit-tour.html", id=id,t=t)
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('login'))
+
+@app.route("/edit-tour/action_delete=<int:id>", methods=['POST','GET'])
+def delete_pack(id):
+    if session.get('admin'):
+        post = db.session.query(Tbltourpackages).filter_by(PackageId=id).first()
+        if post is None:
+            flash("This Item is Already Deleted")
+            return redirect(url_for('manage_tours'))
+        else:
+            record= db.session.query(Tbltourpackages).filter_by(PackageId=id).first()
+            os.remove(app.config['UPLOAD_FOLDER']+record.PackageImage)
+            db.session.delete(record)
+            db.session.commit()
+            flash('Package Has been Deleted')
+            return redirect(url_for('manage_tours'))
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return render_template("admin/pages-login.html")
+
+@app.route("/manage-bookings",  methods=['POST','GET'])
 def manage_bookings():
     if session.get('admin'):
-        booking = db.session.query(User, Tblbooking, Tbltourpackages).filter(Tblbooking.UserId==User.id).filter(Tblbooking.PackageId==Tbltourpackages.PackageId)\
+        if request.method == 'POST':
+            st = request.form.get('myselect')
+            bkid= request.form.get('bkid')
+            bk = db.session.query(Tblbooking).filter_by(BookingId=bkid).first()
+            bk.status = st
+            db.session.commit()
+            return redirect(request.url)
+        else:
+            booking = db.session.query(User, Tblbooking, Tbltourpackages).filter(Tblbooking.UserId==User.id).filter(Tblbooking.PackageId==Tbltourpackages.PackageId)\
             .order_by(Tblbooking.RegDate.desc()).all()
-
-        return render_template("admin/bookings.html",booking=booking)
+            return render_template("admin/bookings.html",booking=booking)
     else:
         flash('LOGIN FIRST TO PROCEED')
         return render_template("admin/pages-login.html")
@@ -179,6 +254,132 @@ def manage_tours():
         flash('LOGIN FIRST TO PROCEED')
         return render_template("admin/pages-login.html")
 
+@app.route("/manage-users")
+def manage_users():
+    if session.get('admin'):
+        users = User.query.order_by(User.regdate.desc()).all()
+
+        return render_template("admin/manage-users.html",users=users)
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('login'))
+
+@app.route("/chat=<uid>" , methods=['POST','GET'])
+def chat(uid):
+    if session.get('admin'):
+        if request.method == 'POST':
+            msg = request.form.get('msg')
+            cht = Chat(uid=uid, message=msg, sender=session.get('id'))
+            db.session.add(cht)
+            db.session.commit()
+            return redirect(request.url)
+        else:
+            result = Chat.query.filter(Chat.uid==uid).order_by(Chat.time).all()
+            user= User.query.filter(User.id==uid).first()
+            return render_template("admin/apps-chat.html",user=user, result=result, uid=uid)
+
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('login'))
+
+@app.route("/help", methods=['POST','GET'])
+def help():
+    if session.get('admin'):
+        if request.method == 'POST':
+            status = request.form.get('read')
+            uid = request.form.get('usr')
+            cht = request.form.get('cht')
+            ch= db.session.query(Chat).filter_by(id=cht).first()
+            ch.status=status
+            db.session.commit()
+            return redirect("../chat="+uid)
+        else:
+            u = User.query.all()
+            r = db.session.query(Chat, User).filter(User.id==Chat.uid).order_by(Chat.time.desc()).all()
+            return render_template("admin/chat.html", u=u, r=r)
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('login'))
+
+@app.route("/page_type=<type>", methods=['POST','GET'])
+def pges(type):
+    if session.get('admin'):
+        if request.method == 'POST':
+            detail = request.form.get('editor')
+            typ= db.session.query(Tblpages).filter_by(type=type).first()
+            typ.detail=detail
+            db.session.commit()
+            return redirect('page_type='+type)
+        else:
+            t = db.session.query(Tblpages).filter_by(type=type).first()
+
+            return render_template("admin/pages.html", t=t)
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('login'))
+
+@app.route("/edit-contact", methods=['POST','GET'])
+def edit_contact():
+    if session.get('admin'):
+        if request.method == 'POST':
+            aid = request.form.get('aid')
+            phone = request.form.get('phone')
+            email = request.form.get('email')
+            abt= db.session.query(About).filter_by(id=aid).first()
+            abt.email=email
+            abt.phone=phone
+            db.session.commit()
+            return redirect(request.url)
+        else:
+            a= db.session.query(About).filter_by(id=1).first()
+            return render_template("admin/edit-contact.html", a=a)
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('login'))
+
+@app.route("/page_<type>")
+def info(type):
+            t = db.session.query(Tblpages).filter_by(type=type).first()
+            return render_template("page.html", t=t)
+
+
+@app.route("/change-password", methods=['POST','GET'])
+def change_password():
+    if session.get('admin'):
+        if request.method=='POST':
+            oldpass=request.form.get('oldpass')
+            password = pbkdf2_sha256.hash(request.form.get('password'))
+            adm = Admin.query.filter_by(id=session.get('aid')).first()
+            if pbkdf2_sha256.verify(oldpass, adm.password):
+                upt = db.session.query(Admin).filter_by(id=session.get('aid')).first()
+                upt.password = password
+                db.session.commit()
+                flash('PASSWORD UPDATED SUCCESSFULLY')
+                return render_template("admin/change-password.html")
+            else:
+                error='YOUR OLD PASSWORD WAS INCORRECT'
+                return render_template("admin/change-password.html", error=error)
+        else:
+            return render_template("admin/change-password.html")
+    elif session.get('user'):
+        if request.method=='POST':
+            oldpass=request.form.get('oldpass')
+            password = pbkdf2_sha256.hash(request.form.get('password'))
+            usr = User.query.filter_by(id=session.get('uid')).first()
+            if pbkdf2_sha256.verify(oldpass, usr.password):
+                upt = db.session.query(User).filter_by(id=session.get('uid')).first()
+                upt.password = password
+                db.session.commit()
+                flash('PASSWORD UPDATED SUCCESSFULLY')
+                return render_template("user/change-password.html")
+            else:
+                error='YOUR OLD PASSWORD WAS INCORRECT'
+                return render_template("user/change-password.html", error=error)
+        else:
+            return render_template("user/change-password.html")
+    else:
+        flash('LOGIN FIRST TO ACCESS DASHBOARD')
+        return redirect(url_for('login'))
 
 # # HOME PAGE
 # @app.route("/")
