@@ -80,32 +80,39 @@ def new_admin():
     else:
         return render_template("admin/pages-register.html")
 
-
+# USER SIGNUP
 @app.route("/signup", methods=['POST','GET'])
 def signup():
-    if request.method == 'POST':
-        fullname = request.form.get('fullname')
-        email = request.form.get('email')
-        mobile = request.form.get('mobile')
-        passw = request.form.get('password')
-        password = pbkdf2_sha256.hash(passw)
-        cur= User.query.filter_by(email=email).first()
-        if cur is None:
-            admin= User(fullname=fullname,email=email, mobile=mobile ,password=password)
-            db.session.add(admin)
-            db.session.commit()
-            flash("NEW MODERATOR ADDED")
-            return render_template("user/pages-register.html")
-        else:
-            error = 'username already exist choose another!'
-            return render_template("user/pages-register.html", error=error)
+    if session.get('user'):
+        return redirect(url_for('user'))
     else:
-        return render_template("user/pages-register.html")
+        if request.method == 'POST':
+            fullname = request.form.get('fullname')
+            email = request.form.get('email')
+            mobile = request.form.get('mobile')
+            passw = request.form.get('password')
+            password = pbkdf2_sha256.hash(passw)
+            cur= User.query.filter_by(email=email).first()
+            if cur is None:
+                usr= User(fullname=fullname,email=email, mobile=mobile ,password=password)
+                db.session.add(usr)
+                db.session.commit()
+                return redirect(url_for('signin'))
+            else:
+                error = 'username already exist choose another!'
+                return render_template("user/pages-register.html", error=error)
+        else:
+            return render_template("user/pages-register.html")
 
-@app.route("/login" , methods=['POST','GET'])
+
+# ADMIN LOGIN
+@app.route("/admin" , methods=['POST','GET'])
 def login():
      if session.get('admin'):
-         return redirect(url_for('trips'))
+         return redirect(url_for('admin'))
+     elif session.get('user'):
+         session.clear()
+         return render_template("admin/pages-login.html")
      else:
          if request.method == "POST":
             username = request.form.get("username")
@@ -121,6 +128,42 @@ def login():
          else:
              return render_template("admin/pages-login.html")
 
+
+# User Login Page
+@app.route("/login" , methods=['POST','GET'])
+def signin():
+     if session.get('user'):
+         return redirect(url_for('user'))
+     elif session.get('admin'):
+         session.clear()
+         return render_template("user/pages-login.html")
+     else:
+         if request.method == "POST":
+            email = request.form.get("email")
+            password = request.form.get("password")
+            usr = User.query.filter_by(email=email).first()
+            if pbkdf2_sha256.verify(password, usr.password):
+                session['user'] = usr.email
+                session['uid']= usr.id
+                session['username']= usr.fullname
+                return redirect(url_for('user'))
+            else:
+                error='Invalid Username or Password'
+                return render_template("user/pages-login.html", error=error)
+         else:
+             return render_template("user/pages-login.html")
+
+# USER DASHBOARD
+@app.route("/user_dashboard")
+def user():
+    if session.get('user'):
+        return render_template("user/user.html")
+    else:
+        flash('LOGIN FIRST TO ACCESS DASHBOARD')
+        return redirect(url_for('signin'))
+
+
+#  ADMIN DASHBOARD
 @app.route("/dashboard")
 def admin():
     if session.get('admin'):
@@ -131,6 +174,7 @@ def admin():
         flash('LOGIN FIRST TO ACCESS DASHBOARD')
         return redirect(url_for('login'))
 
+# ADMIN ADD NEW TOUR
 @app.route("/add-tour", methods=['POST','GET'])
 def add_tour():
     if session.get('admin'):
@@ -157,6 +201,8 @@ def add_tour():
         flash('LOGIN FIRST TO PROCEED')
         return render_template("admin/pages-login.html")
 
+
+#  EDIT TOUR INFORMATION
 @app.route("/manage-tour/id=<id>/action=edit", methods=['POST', 'GET'])
 def edit_tour(id):
     if session.get('admin'):
@@ -208,6 +254,8 @@ def edit_tour(id):
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
 
+
+#  DELETE A TOUR PACKAGE
 @app.route("/edit-tour/action_delete=<int:id>", methods=['POST','GET'])
 def delete_pack(id):
     if session.get('admin'):
@@ -226,6 +274,8 @@ def delete_pack(id):
         flash('LOGIN FIRST TO PROCEED')
         return render_template("admin/pages-login.html")
 
+
+#  MANAGE BOOKINGS
 @app.route("/manage-bookings",  methods=['POST','GET'])
 def manage_bookings():
     if session.get('admin'):
@@ -242,8 +292,10 @@ def manage_bookings():
             return render_template("admin/bookings.html",booking=booking)
     else:
         flash('LOGIN FIRST TO PROCEED')
-        return render_template("admin/pages-login.html")
+        return redirect(url_for('login'))
 
+
+#   MANAGE TOURS
 @app.route("/manage-tours")
 def manage_tours():
     if session.get('admin'):
@@ -254,6 +306,8 @@ def manage_tours():
         flash('LOGIN FIRST TO PROCEED')
         return render_template("admin/pages-login.html")
 
+
+#    MANAGE USERS
 @app.route("/manage-users")
 def manage_users():
     if session.get('admin'):
@@ -264,12 +318,45 @@ def manage_users():
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
 
+#    USER BOOKING HISTORY
+@app.route("/booking-history")
+def booking_history():
+    if session.get('user'):
+        b = db.session.query(Tblbooking,Tbltourpackages).filter(Tblbooking.UserId==session.get('uid')).filter(Tblbooking.PackageId==Tbltourpackages.PackageId)\
+            .order_by(Tblbooking.RegDate.desc()).all()
+
+        return render_template("user/booking-history.html",b=b)
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('user'))
+
+# User Chat Screen
+@app.route("/chat" , methods=['POST','GET'])
+def uchat():
+    if session.get('user'):
+        if request.method == 'POST':
+            msg = request.form.get('msg')
+            cht = Chat(uid=session.get('uid'), message=msg, sender=session.get('uid'), status='2')
+            db.session.add(cht)
+            db.session.commit()
+            return redirect(request.url)
+        else:
+            result = db.session.query(Chat,User).filter(Chat.uid==session.get('uid')).filter(User.id==session.get('uid')).order_by(Chat.time).all()
+            user= About.query.filter(About.id==1).first()
+            print(session.get('uid'))
+            return render_template("user/apps-chat.html",user=user, result=result)
+
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('signin'))
+
+# ADMIN CHAT SCREEN
 @app.route("/chat=<uid>" , methods=['POST','GET'])
 def chat(uid):
     if session.get('admin'):
         if request.method == 'POST':
             msg = request.form.get('msg')
-            cht = Chat(uid=uid, message=msg, sender=session.get('id'))
+            cht = Chat(uid=uid, message=msg, sender=session.get('aid'), status='1')
             db.session.add(cht)
             db.session.commit()
             return redirect(request.url)
@@ -282,6 +369,7 @@ def chat(uid):
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
 
+# ADMIN CONTACT HELP NOTIFICATIONS
 @app.route("/help", methods=['POST','GET'])
 def help():
     if session.get('admin'):
@@ -301,6 +389,8 @@ def help():
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
 
+
+#    EDIT PAGE TYPES
 @app.route("/page_type=<type>", methods=['POST','GET'])
 def pges(type):
     if session.get('admin'):
@@ -318,6 +408,8 @@ def pges(type):
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
 
+
+#  EDIT CONTACT INFO
 @app.route("/edit-contact", methods=['POST','GET'])
 def edit_contact():
     if session.get('admin'):
@@ -337,12 +429,15 @@ def edit_contact():
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
 
+
+#  GUEST USER PAGE TYPE
 @app.route("/page_<type>")
 def info(type):
             t = db.session.query(Tblpages).filter_by(type=type).first()
             return render_template("page.html", t=t)
 
 
+#   PASSWORD CHANGE SECTION
 @app.route("/change-password", methods=['POST','GET'])
 def change_password():
     if session.get('admin'):
@@ -883,7 +978,7 @@ def logout():
     elif session.get('user'):
         session.clear()
         flash('YOUR SESSION HAS BEEN LOGGED OUT')
-        return render_template(('user/pages-login.html'))
+        return redirect(url_for('user'))
     else:
         return redirect(url_for('home'))
 #
