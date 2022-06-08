@@ -80,32 +80,39 @@ def new_admin():
     else:
         return render_template("admin/pages-register.html")
 
-
+# USER SIGNUP
 @app.route("/signup", methods=['POST','GET'])
 def signup():
-    if request.method == 'POST':
-        fullname = request.form.get('fullname')
-        email = request.form.get('email')
-        mobile = request.form.get('mobile')
-        passw = request.form.get('password')
-        password = pbkdf2_sha256.hash(passw)
-        cur= User.query.filter_by(email=email).first()
-        if cur is None:
-            admin= User(fullname=fullname,email=email, mobile=mobile ,password=password)
-            db.session.add(admin)
-            db.session.commit()
-            flash("NEW MODERATOR ADDED")
-            return render_template("user/pages-register.html")
-        else:
-            error = 'username already exist choose another!'
-            return render_template("user/pages-register.html", error=error)
+    if session.get('user'):
+        return redirect(url_for('user'))
     else:
-        return render_template("user/pages-register.html")
+        if request.method == 'POST':
+            fullname = request.form.get('fullname')
+            email = request.form.get('email')
+            mobile = request.form.get('mobile')
+            passw = request.form.get('password')
+            password = pbkdf2_sha256.hash(passw)
+            cur= User.query.filter_by(email=email).first()
+            if cur is None:
+                usr= User(fullname=fullname,email=email, mobile=mobile ,password=password)
+                db.session.add(usr)
+                db.session.commit()
+                return redirect(url_for('signin'))
+            else:
+                error = 'username already exist choose another!'
+                return render_template("user/pages-register.html", error=error)
+        else:
+            return render_template("user/pages-register.html")
 
-@app.route("/login" , methods=['POST','GET'])
+
+# ADMIN LOGIN
+@app.route("/admin" , methods=['POST','GET'])
 def login():
      if session.get('admin'):
-         return redirect(url_for('trips'))
+         return redirect(url_for('admin'))
+     elif session.get('user'):
+         session.clear()
+         return render_template("admin/pages-login.html")
      else:
          if request.method == "POST":
             username = request.form.get("username")
@@ -121,6 +128,41 @@ def login():
          else:
              return render_template("admin/pages-login.html")
 
+
+# User Login Page
+@app.route("/login" , methods=['POST','GET'])
+def signin():
+     if session.get('user'):
+         return redirect(url_for('USER'))
+     elif session.get('admin'):
+         session.clear()
+         return render_template("user/pages-login.html")
+     else:
+         if request.method == "POST":
+            email = request.form.get("email")
+            password = request.form.get("password")
+            usr = User.query.filter_by(email=email).first()
+            if pbkdf2_sha256.verify(password, usr.password):
+                session['user'] = usr.email
+                session['aid']= usr.id
+                return redirect(url_for('user'))
+            else:
+                error='Invalid Username or Password'
+                return render_template("user/pages-login.html", error=error)
+         else:
+             return render_template("user/pages-login.html")
+
+# USER DASHBOARD
+@app.route("/user_dashboard")
+def user():
+    if session.get('user'):
+        return render_template("user/user.html")
+    else:
+        flash('LOGIN FIRST TO ACCESS DASHBOARD')
+        return redirect(url_for('signin'))
+
+
+#  ADMIN DASHBOARD
 @app.route("/dashboard")
 def admin():
     if session.get('admin'):
@@ -131,6 +173,7 @@ def admin():
         flash('LOGIN FIRST TO ACCESS DASHBOARD')
         return redirect(url_for('login'))
 
+# ADMIN ADD NEW TOUR
 @app.route("/add-tour", methods=['POST','GET'])
 def add_tour():
     if session.get('admin'):
@@ -242,7 +285,7 @@ def manage_bookings():
             return render_template("admin/bookings.html",booking=booking)
     else:
         flash('LOGIN FIRST TO PROCEED')
-        return render_template("admin/pages-login.html")
+        return redirect(url_for('login'))
 
 @app.route("/manage-tours")
 def manage_tours():
@@ -264,6 +307,8 @@ def manage_users():
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
 
+
+# ADMIN CHAT SCREEN
 @app.route("/chat=<uid>" , methods=['POST','GET'])
 def chat(uid):
     if session.get('admin'):
