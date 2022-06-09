@@ -23,6 +23,7 @@ class Tblbooking(db.Model):
     PackageId = db.Column(db.Integer, nullable=False)
     UserId = db.Column(db.Integer, nullable=False)
     FromDate = db.Column(db.String(120), nullable=False)
+    city = db.Column(db.String(120), nullable=False)
     Comment = db.Column(db.String(5000), nullable=True)
     RegDate= db.Column(db.DATE, default=datetime.now())
     status=  db.Column(db.String(120), nullable=True)

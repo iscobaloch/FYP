@@ -54,11 +54,25 @@ def contact():
     random = Tbltourpackages.query.order_by(func.random()).all()
     return render_template('contact.html', packs=packs, random=random)
 
-@app.route("/trip_id=<id>")
+@app.route("/trip_id=<id>" , methods=['POST','GET'])
 def booking(id):
     result = db.session.query(Tbltourpackages).filter(Tbltourpackages.PackageId==id).first()
+    usr= db.session.query(User).filter(User.id==session.get('uid')).first()
     if result:
-        return render_template('booking-page.html',  result=result)
+        if request.method == 'POST':
+            if session.get('user'):
+                city= request.form.get('city')
+                date= request.form.get('date')
+                msg= request.form.get('message')
+                bk= Tblbooking(PackageId=id, UserId=session.get('uid'), city=city, FromDate=date, Comment=msg, status='3')
+                db.session.add(bk)
+                db.session.commit()
+                flash('Your Trip is Submitted')
+                return redirect(url_for('booking_history'))
+            else:
+                return redirect(url_for('signin'))
+        else:
+            return render_template('booking-page.html',  result=result, usr=usr)
     else:
         return render_template('404.html')
 
@@ -171,7 +185,11 @@ def admin():
     if session.get('admin'):
         member=User.query.count()
         cats = Tbltourpackages.query.all()
-        return render_template("admin/admin.html",cats=cats, member=member)
+        booking = db.session.query(User, Tblbooking, Tbltourpackages).filter(Tblbooking.UserId == User.id).filter(
+            Tblbooking.PackageId == Tbltourpackages.PackageId) \
+            .order_by(Tblbooking.RegDate.desc()).all()
+        msg= db.session.query(Chat,User).filter(Chat.uid==User.id).filter(Chat.sender>1).order_by(Chat.time.desc()).all()
+        return render_template("admin/admin.html",cats=cats, member=member, booking=booking, msg=msg)
     else:
         flash('LOGIN FIRST TO ACCESS DASHBOARD')
         return redirect(url_for('login'))

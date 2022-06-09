@@ -1,5 +1,5 @@
 {%extends "user/base.html"%}
-{% block title%} BOOKING HISTORY - TMS{% endblock %}
+{% block title%} BOOKING HISTORY - TMS {% endblock %}
    {% block body %}
 
 
@@ -49,7 +49,7 @@
 
 
                                                     <tbody>
-                                                      {% for b in booking%}
+                                                      {% for b in b%}
                                                         <tr>
                                                           <td hidden>{{loop.index}}</td>
                                                             <td>BK#-{{b.Tblbooking.BookingId}}</td>
@@ -65,7 +65,6 @@
                                                               {% elif b.Tblbooking.status==2%}
                                                               <span class="badge bg-danger">Disapproved</span>
                                                               {%else%}
-
 
                                                               <span class="badge bg-warning">Pending</span>
                                                             </h3> {%endif%}</td>

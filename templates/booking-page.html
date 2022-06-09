@@ -209,29 +209,30 @@ a:hover { cursor: pointer; outline: 0; border: 0;
   <div class="ao-tour-form-wrapper ao-tour-mma-form"><article id="post-11" class="post-11 page type-page status-publish hentry">
   <div class="entry-content">
        {% if session.get('user') %}
-  <form id="contact-form" class="ng-untouched ng-pristine ng-invalid">
+  <form id="contact-form" method="post" class="ng-untouched ng-pristine ng-invalid">
   <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">Booking Details</h2>
   <label class="ao-tour-form-label">Your Full Name</label>
-  <input class="form-control ng-pristine ng-invalid ng-touched" name="name" required placeholder="Please enter Full Name" type="text" />
+  <input class="form-control ng-pristine ng-invalid ng-touched" readonly name="name" required value="{{usr.fullname}}" type="text" required>
   <label class="ao-tour-form-label">Your Email</label>
-  <input class="form-control ng-pristine ng-invalid ng-touched" name="email" required placeholder="Please enter Email" type="email" />
+  <input class="form-control ng-pristine ng-invalid ng-touched" readonly name="email" required placeholder="{{usr.email}}" type="email" required>
   <label class="ao-tour-form-label">Your Mobile</label>
-  <input class="form-control ng-pristine ng-invalid ng-touched" name="mobile" required placeholder="Please enter mobile" type="text" />
+  <input class="form-control ng-pristine ng-invalid ng-touched" readonly name="mobile" required placeholder="{{usr.mobile}}" type="text" required>
   <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">When would you like to go?</h2> <div class="row">
   <div class="col-sm-6"> <div class="form-group">
   <label class="ao-tour-form-label">Your City</label>
-  <input class="form-control ng-pristine ng-valid ng-touched" name="depcity" required placeholder="Please enter Departure City" type="text">  </div> </div>
-  <div class="col-sm-6"> <div class="form-group ao-tour-datepicker" dropdown="" dropdown-append-to-body="">
+  <input class="form-control ng-pristine ng-valid ng-touched" name="city" required placeholder="Please enter your City" type="text">  </div> </div>
+  <div class="col-sm-6">
+  <div class="form-group ao-tour-datepicker"  dropdown-append-to-body="">
   <label class="ao-tour-form-label">Date</label>
   <div class="form-control">
   <input class="form-control ng-pristine ng-invalid ng-touched" style="height: 40px; margin-top: -8px;" type="date" required name="date"> </div>  </div> </div>
   <br><br>
-  <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">Booking Details</h2>
+  <h2 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">DESCRIPTION</h2>
   <textarea class="form-control ng-pristine ng-invalid ng-touched" name="message" required placeholder="Type your further details here"></textarea>
-  <input class="btn ao-tour-btn-primary ao-tour-btn__mma-btn" style="padding: 0px;" type="submit" value="Plan it for me!" /> </form>
+  <input class="btn ao-tour-btn-primary ao-tour-btn__mma-btn" style="padding: 0px;" type="submit" value="Plan it For Me!" /> </form>
   {% else%}
-  <h4 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">BOOK THIS TOUR NOW </h4>
-  <a href="{{url_for('login')}}"><button type="button" name="button" class="btn ao-tour-btn-primary ao-tour-btn_mma-btn"  style="padding: 10px;">PLEASE LOGIN FIRST</button></a>
+  <h4 class="ao-tour-heading-2 ao-tour-heading-primary ao-tour-fieldset__legend">BOOK THIS TOUR NOW</h4>
+  <a href="{{url_for('signin')}}"><button type="button" name="button" class="btn ao-tour-btn-primary ao-tour-btn_mma-btn"  style="padding: 10px;">PLEASE LOGIN FIRST</button></a>
   {%endif%}
 </div>
   <div id="ajax-content1"></div>

@@ -105,15 +105,15 @@ background: rgb(55, 55, 55);
 <div class="top-header">
 	<div class="container">
 		<ul class="tp-hd-lft wow fadeInLeft animated" data-wow-delay=".5s">
-			<li class="hm"><a href="index.html"><i class="fa fa-home"></i></a></li>
-			<li class="prnt"><a href="profile.php">Dashboard</a></li>
-				<li class="prnt"><a href="change-password.php">Change Password</a></li>
-			<li class="prnt"><a href="tour-history.php">Manage Bookings</a></li>
+			<li class="hm"><a href="{{url_for('home')}}l"><i class="fa fa-home"></i></a></li>
+			<li class="prnt"><a href="{{url_for('admin')}}">Dashboard</a></li>
+				<li class="prnt"><a href="{{url_for('change_password')}}">Change Password</a></li>
+			<li class="prnt"><a href="{{url_for('manage_tours')}}">Manage Bookings</a></li>
 		</ul>
 		<ul class="tp-hd-rgt wow fadeInRight animated" data-wow-delay=".5s">
 			<li class="tol">Welcome :</li>
-			<li class="sig"><?php echo htmlentities($_SESSION['login']);?></li>
-			<li class="sigi"><a href="logout.php" >/ Logout</a></li>
+			<li class="sig">Administrator</li>
+			<li class="sigi"><a href="{{url_for('logout')}}" >/ Logout</a></li>
         </ul>
 		<div class="clearfix"></div>
 	</div>
@@ -122,15 +122,15 @@ background: rgb(55, 55, 55);
 <div class="top-header">
 	<div class="container">
 		<ul class="tp-hd-lft wow fadeInLeft animated" data-wow-delay=".5s">
-			<li class="hm"><a href="index.html"><i class="fa fa-home"></i></a></li>
-			<li class="prnt"><a href="profile.php">My Dashboard</a></li>
-				<li class="prnt"><a href="change-password.php">Change Password</a></li>
-			<li class="prnt"><a href="tour-history.php">My Tour History</a></li>
+			<li class="hm"><a href="{{url_for('home')}}"><i class="fa fa-home"></i></a></li>
+			<li class="prnt"><a href="{{url_for('user')}}">My Dashboard</a></li>
+				<li class="prnt"><a href="{{url_for('change_password')}}">Change Password</a></li>
+			<li class="prnt"><a href="{{url_for('booking_history')}}">My Tour History</a></li>
 		</ul>
 		<ul class="tp-hd-rgt wow fadeInRight animated" data-wow-delay=".5s">
 			<li class="tol">Welcome :</li>
-			<li class="sig">{{session.get('username.capitalize()')}}</li>
-			<li class="sigi"><a href="logout.php" >/ Logout</a></li>
+			<li class="sig">{{session.get('username')}}</li>
+			<li class="sigi"><a href="{{url_for('logout')}}" >/ Logout</a></li>
         </ul>
 		<div class="clearfix"></div>
 	</div>

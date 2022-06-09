@@ -1,5 +1,5 @@
 {%extends "admin/form-master.html"%}
-{% block title%}USER LOGIN - TMS{% endblock %}
+{% block title%}ADMIN LOGIN - TMS{% endblock %}
    {% block body %}
 
     <body class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -12,7 +12,7 @@
                             <!-- Logo -->
                             <div class="card-header pt-4 pb-4 text-center bg-primary">
                                 <a href="index.html">
-                                    <span><img src="assets/images/logo.png" alt="" height="18"></span>
+                                    <span><img src="{{url_for('static', filename='assets/images/logo.png')}}" alt="" height="18"></span>
                                 </a>
                             </div>
 
@@ -20,18 +20,18 @@
 
                                 <div class="text-center w-75 m-auto">
                                     <h4 class="text-dark-50 text-center pb-0 fw-bold">Sign In</h4>
-                                    <p class="text-muted mb-4">Enter your email address and password to access admin panel.</p>
+                                    <p class="text-muted mb-4">Enter username and password to access admin panel.</p>
                                 </div>
 
                                 <form action="{{url_for('login')}}" method="post">
 
                                     <div class="mb-3">
-                                        <label for="username" class="form-label">username</label>
-                                        <input class="form-control" type="username" id="username" name="username" required="" placeholder="Enter your email">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input class="form-control" type="username" id="username" name="username" required="" placeholder="Enter your username">
                                     </div>
 
                                     <div class="mb-3">
-                                        <a href="pages-recoverpw.html" class="text-muted float-end"><small>Forgot your password?</small></a>
+                                        <a href="#" class="text-muted float-end"><small>Forgot your password?</small></a>
                                         <label for="password" class="form-label">Password</label>
                                         <div class="input-group input-group-merge">
                                             <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">

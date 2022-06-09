@@ -8,12 +8,12 @@
         <button type="button" class="slick-prev icon-ao-tour-angle-left slick-arrow" style=""></button>
                 <div aria-live="polite" class="slick-list draggable">
             <div class="track" style="opacity: 1;" role="listbox">
-              {% for packs in packs[0:8] %}
+              {% for packs in packs %}
               {% set fname = 'packimages/' + packs.PackageImage %}
-                <a href="https://www.getout.pk/trips/swat/" class="ao-tour-home-slider__item slick-slide slick-cloned" style="width: 270px;" tabindex="-1" role="option" aria-describedby="slick-slide383" data-slick-index="-5" aria-hidden="true">
+                <a href="trip_id={{packs.PackageId}}" class="ao-tour-home-slider__item slick-slide slick-cloned" style="width: 270px;" tabindex="-1" role="option" aria-describedby="slick-slide383" data-slick-index="-5" aria-hidden="true">
                     <div class="ao-tour-home-slider__item-inner" style="background-image: url({{ url_for('static', filename=fname) }});">
-                        <div class="ao-tour-home-slider__price">Starting From: <span>11,000</span></div>
-                        <div class="ao-tour-home-slider__title">Swat</div>
+                        <div class="ao-tour-home-slider__price">Starting From: <span>{{packs.PackagePrice}}</span></div>
+                        <div class="ao-tour-home-slider__title">{{packs.PackageLocation}}</div>
                     </div>
                 </a>
                 {% endfor%}
