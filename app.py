@@ -57,8 +57,10 @@ def contact():
 @app.route("/trip_id=<id>")
 def booking(id):
     result = db.session.query(Tbltourpackages).filter(Tbltourpackages.PackageId==id).first()
-
-    return render_template('booking-page.html',  result=result)
+    if result:
+        return render_template('booking-page.html',  result=result)
+    else:
+        return render_template('404.html')
 
 @app.route("/new-admin", methods=['POST','GET'])
 def new_admin():
@@ -249,7 +251,10 @@ def edit_tour(id):
                 return redirect(url_for('manage_tours'))
         else:
             t = db.session.query(Tbltourpackages).filter(Tbltourpackages.PackageId==id).first()
-            return render_template("admin/edit-tour.html", id=id,t=t)
+            if t:
+                return render_template("admin/edit-tour.html", id=id,t=t)
+            else:
+                return render_template('404.html')
     else:
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
@@ -306,6 +311,23 @@ def manage_tours():
         flash('LOGIN FIRST TO PROCEED')
         return render_template("admin/pages-login.html")
 
+#   GUEST USER CONTACT HELP
+@app.route("/manage-help",  methods=['POST','GET'])
+def guest_help():
+    if session.get('admin'):
+        if request.method == 'POST':
+            id= request.form.get('eqid')
+            st= request.form.get('st')
+            stats = db.session.query(TblEnquiry).filter_by(id=id).first()
+            stats.Status = st
+            db.session.commit()
+            return redirect(request.url)
+        else:
+            msg = TblEnquiry.query.order_by(TblEnquiry.PostingDate.desc()).all()
+            return render_template("admin/guest-help.html",msg=msg)
+    else:
+        flash('LOGIN FIRST TO PROCEED')
+        return redirect(url_for('login'))
 
 #    MANAGE USERS
 @app.route("/manage-users")
@@ -343,7 +365,6 @@ def uchat():
         else:
             result = db.session.query(Chat,User).filter(Chat.uid==session.get('uid')).filter(User.id==session.get('uid')).order_by(Chat.time).all()
             user= About.query.filter(About.id==1).first()
-            print(session.get('uid'))
             return render_template("user/apps-chat.html",user=user, result=result)
 
     else:
@@ -363,7 +384,10 @@ def chat(uid):
         else:
             result = Chat.query.filter(Chat.uid==uid).order_by(Chat.time).all()
             user= User.query.filter(User.id==uid).first()
-            return render_template("admin/apps-chat.html",user=user, result=result, uid=uid)
+            if user:
+                return render_template("admin/apps-chat.html",user=user, result=result, uid=uid)
+            else:
+                return render_template('404.html')
 
     else:
         flash('LOGIN FIRST TO PROCEED')
@@ -402,8 +426,10 @@ def pges(type):
             return redirect('page_type='+type)
         else:
             t = db.session.query(Tblpages).filter_by(type=type).first()
-
-            return render_template("admin/pages.html", t=t)
+            if t:
+                return render_template("admin/pages.html", t=t)
+            else:
+                return render_template('404.html')
     else:
         flash('LOGIN FIRST TO PROCEED')
         return redirect(url_for('login'))
@@ -430,11 +456,34 @@ def edit_contact():
         return redirect(url_for('login'))
 
 
+#  Guest contact(enquiry) Page
+@app.route("/contact-us", methods=['POST','GET'])
+def contact_us():
+    if request.method == 'POST':
+        fullname = request.form.get('fname')
+        phone = request.form.get('phone')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        description = request.form.get('msg')
+        enq= TblEnquiry(FullName=fullname, EmailId=email, MobileNumber=phone, Subject=subject, Description=description, Status='2')
+        db.session.add(enq)
+        db.session.commit()
+        flash('MESSAGE HAS BEEN SENT')
+        return redirect(request.url)
+    else:
+        ct= db.session.query(Tbltourpackages).filter_by(id=1).first()
+        print(ct.email)
+        return render_template("contact.html", ct=ct)
+
+
 #  GUEST USER PAGE TYPE
 @app.route("/page_<type>")
 def info(type):
             t = db.session.query(Tblpages).filter_by(type=type).first()
-            return render_template("page.html", t=t)
+            if t:
+                return render_template("page.html", t=t)
+            else:
+                return render_template('404.html')
 
 
 #   PASSWORD CHANGE SECTION
@@ -981,19 +1030,17 @@ def logout():
         return redirect(url_for('user'))
     else:
         return redirect(url_for('home'))
-#
-#
-# # create  custom Error pages
-# #Invalid URL
-#
-# @app.errorhandler(404)
-# def page_not_found(e):
-#     return render_template("404.html"),404
-#
-# # Internal server error
-# @app.errorhandler(500)
-# def page_not_found(e):
-#     return render_template("500.html"),500
+
+# create  custom Error pages
+#Invalid URL
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"),404
+
+# Internal server error
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("500.html"),500
 
 
 if __name__ == "__main__":

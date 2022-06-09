@@ -26,7 +26,17 @@ class Tblbooking(db.Model):
     Comment = db.Column(db.String(5000), nullable=True)
     RegDate= db.Column(db.DATE, default=datetime.now())
     status=  db.Column(db.String(120), nullable=True)
-    CancelledBy=  db.Column(db.String(120), nullable=False)
+
+class TblEnquiry(db.Model):
+    __tablename__ = 'tblenquiry'
+    id = db.Column(db.Integer, primary_key=True)
+    FullName = db.Column(db.Integer, nullable=False)
+    EmailId = db.Column(db.Integer, nullable=False)
+    MobileNumber = db.Column(db.String(120), nullable=False)
+    Subject = db.Column(db.String(5000), nullable=True)
+    Description =  db.Column(db.String(120), nullable=True)
+    PostingDate = db.Column(db.DATE, default=datetime.now())
+    Status =  db.Column(db.String(120), nullable=True)
 
 
 
@@ -36,24 +46,6 @@ class About(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(100), nullable=False)
-
-
-# class Category(db.Model):
-#     __tablename__= 'category'
-#     cid = db.Column(db.Integer, primary_key=True)
-#     cname = db.Column(db.String(80), nullable=False)
-#
-# class Tblposts(db.Model):
-#     __tablename__ = 'posts'
-#     BookingId = db.Column(db.Integer, primary_key=True)
-#     PackageId = db.Column(db.Integer, nullable=False)
-#     UserId = db.Column(db.Integer, nullable=False)
-#     FromDate = db.Column(db.String(120), nullable=False)
-#     Comment = db.Column(db.String(5000), nullable=True)
-#     RegDate= db.Column(db.DATE, default=datetime.now())
-#     status=  db.Column(db.String(120), nullable=True)
-#     CancelledBy=  db.Column(db.String(120), nullable=False)
-
 #
 #
 class User(db.Model):

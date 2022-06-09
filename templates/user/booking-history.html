@@ -1,5 +1,5 @@
-{%extends "admin/base.html"%}
-{% block title%} ADD TOUR - ADMIN PANEL{% endblock %}
+{%extends "user/base.html"%}
+{% block title%} BOOKING HISTORY - TMS{% endblock %}
    {% block body %}
 
 
@@ -14,10 +14,10 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                            <li class="breadcrumb-item active">Bookings</li>
+                                            <li class="breadcrumb-item active">My Bookings</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Bookings</h4>
+                                    <h4 class="page-title">My Bookings</h4>
                                 </div>
                             </div>
                         </div>
@@ -28,14 +28,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title">Basic Data Table</h4>
-                                        <p class="text-muted font-14">
-                                          {% for message in get_flashed_messages()%}
-                                       <p style='color:green'>{{message}}</p>{%endfor%}
-                                        </p>
-
-
-
 
 
                                     <div class="tab-content">
@@ -44,11 +36,11 @@
                                                     <thead>
                                                         <tr>
                                                             <th hidden>S#</th>
-                                                            <th>Booking ID</th>
-                                                            <th>Package Name</th>
-                                                            <th>BOOKED BY</th>
-                                                            <th>MOBILE</th>
-                                                            <th>EMAIL</th>
+                                                            <th>BOOKING ID</th>
+                                                            <th>PACKAGE NAME</th>
+                                                            <th>LOCATION</th>
+                                                            <th>PRICE</th>
+                                                            <th>DATE</th>
                                                             <th>MESSAGE</th>
 
                                                             <th>STATUS</th>
@@ -62,9 +54,9 @@
                                                           <td hidden>{{loop.index}}</td>
                                                             <td>BK#-{{b.Tblbooking.BookingId}}</td>
                                                             <td>{{b.Tbltourpackages.PackageName}}</td>
-                                                            <td>{{b.User.fullname}}</td>
-                                                            <td>{{b.User.mobile}}</td>
-                                                            <td>{{b.User.email}}</td>
+                                                            <td>{{b.Tbltourpackages.PackageLocation}}</td>
+                                                            <td>{{b.Tbltourpackages.PackagePrice}}</td>
+                                                            <td>{{b.Tblbooking.RegDate}}</td>
                                                             <td>{{b.Tblbooking.Comment}}</td>
 
                                                             <td> <h3>
@@ -74,16 +66,8 @@
                                                               <span class="badge bg-danger">Disapproved</span>
                                                               {%else%}
 
-  <form method="post">
-    <input type="hidden" name="bkid" id="bkid" value="{{b.Tblbooking.BookingId}}">
-    <select name="myselect" class="btn btn-outline-primary btn-rounded" aria-haspopup="true" aria-expanded="false" id="myselect" onchange="this.form.submit()">
 
-           <option  disabled selected hidden>ACTION</option>
-           <option value="1">Approve</option>
-           <option value="2">Disapprove</option>
-       </select>
-
-      </form>
+                                                              <span class="badge bg-warning">Pending</span>
                                                             </h3> {%endif%}</td>
 
 

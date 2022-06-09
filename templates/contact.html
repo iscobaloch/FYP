@@ -2,20 +2,58 @@
 {% block title%} TMS - HOME PAGE {% endblock %}
  {% block body %}
 <!-- top-header -->
+
  <ao-tour-header-breadcrumb>
 							<div class="ao-tour-page_header"> <div class="container"> <div class="ao-tour-page__meta-wrapper">
 								<ul class="ao-tour-page__breadcrumbs">  <li> <a href="../index.html">Home</a>  </li>
 									<li>  <span>Contact Us</span> </li> </ul>  <a href="index.html"><h1 class="ao-tour-page__title">Contact Us</h1></a> </div> </div> </div> </ao-tour-header-breadcrumb> <div class="ao-tour-margin__top-10 ao-tour-margin__bottom-30">
 										<div class="container"> <div class="ao-tour-form-wrapper ao-tour-mma-form">
 											<div class="entry-content"> <div role="form" class="wpcf7" id="wpcf7-f99-o1" lang="en-US" dir="ltr"><div class="screen-reader-response"></div>
-											<form action="https://www.pakadventures.pk/contact-us/#wpcf7-f99-o1" method="post" class="wpcf7-form" novalidate="novalidate">
-												<div style="display: none;">
-													<input type="hidden" name="_wpcf7" value="99" />
-													<input type="hidden" name="_wpcf7_version" value="5.1.1" />
-											<input type="hidden" name="_wpcf7_locale" value="en_US" />
-											<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f99-o1" />
-											<input type="hidden" name="_wpcf7_container_post" value="0" />
-											<input type="hidden" name="g-recaptcha-response" value="" /></div>
-											<h1 class="ao-tour-heading-1">Contact Us</h1><p>You can still contact us, right here – right now. Use this contact form to send an e-mail. Usually we respond in 1 bussiness day.</p><form novalidate="" class="ng-pristine ng-invalid ng-touched"><div class="col-lg-4 col-md-12"><div class="form-group"> <label class="ao-tour-form-label">Your Name*</label><br /><span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Please enter name" /></span><br /> <span class="ao-tour-error"></span> </div></p></div><div class="col-lg-4 col-md-6"><div class="form-group"> <label class="ao-tour-form-label">Your Email*</label><br /><span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control" aria-required="true" aria-invalid="false" placeholder="Please enter email" /></span><br /> <span class="ao-tour-error"></span><br />  </div></p></div><div class="col-lg-4 col-md-6"><div class="form-group"> <label class="ao-tour-form-label">Mobile*</label><br /><span class="wpcf7-form-control-wrap tel-539"><input type="tel" name="tel-539" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel form-control" aria-required="true" aria-invalid="false" placeholder="Please enter mobile number" /></span><br /> <br />  </div></p></div><div class="col-lg-12"><div class="form-group"> <label class="ao-tour-form-label">Subject</label><br /><span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Please state your subject" /></span> </div></p></div><div class="col-lg-12"><div class="form-group"> <label class="ao-tour-form-label">Message*</label><br /><span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Write your queries here"></textarea></span></p><p> <span class="ao-tour-error"><div class="wpcf7-response-output wpcf7-display-none"></div><p></span> </div></p></div><div class="col-lg-12"><input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit btn" /></p></div></p></form></form></div> <br><div class="ao-tour-about-legends"> <div class="row"> <div class="col-lg-6"> <div class="ao-tour-about-legends__block ao-tour-about-legends__block-v2"> <div class="ao-tour-about-legends__icon"><i class="icon-ao-tour-phone icon-ao-tour"></i></div> <div class="ao-tour-about-legends__info"> <div class="ao-tour-about-legends__label">Telephone</div> <div class="ao-tour-about-legends__value">We are happy to answer your questions or give you directions via phone.<strong>+923334776744</strong></div> </div> </div> </div> <div class="col-lg-6"> <div class="ao-tour-about-legends__block ao-tour-about-legends__block-v2"> <div class="ao-tour-about-legends__icon"><i class="icon-email-mail-streamline icon-ao-tour"></i></div> <div class="ao-tour-about-legends__info"> <div class="ao-tour-about-legends__label">Email</div> <div class="ao-tour-about-legends__value">If you are on the go and still want to ask a question, simply drop us an e-mail.<strong><a href="mailto:info@pakadventures.pk">info@pakadventures.pk</a></strong></div> </div> </div> </div> </div> </div> </div> </div> </div> </div> </ao-tour-make-adventure>
+												<h1 class="ao-tour-heading-1">Contact Us</h1><p>You can still contact us, right here – right now. Use this contact form to send an e-mail. Usually we respond in 1 bussiness day.</p>
+                      <form method="post" class="ng-pristine ng-invalid ng-touched"><div class="col-lg-4 col-md-12">
+                        <div class="form-group"> <label class="ao-tour-form-label">Your Name*</label><br /><span class="wpcf7-form-control-wrap your-name">
+                        <input type="text" name="fname" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Please enter name" required></span><br />
+                        <span class="ao-tour-error"></span> </div></p></div>
+                        <div class="col-lg-4 col-md-6">
+                          <div class="form-group"> <label class="ao-tour-form-label">Your Email*</label><br /><span class="wpcf7-form-control-wrap your-email">
+                            <input type="email" name="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control" aria-required="true" aria-invalid="false" placeholder="Please enter email" required></span><br /> <span class="ao-tour-error"></span><br />  </div></p></div><div class="col-lg-4 col-md-6"><div class="form-group">
+                          <label class="ao-tour-form-label">Mobile*</label><br />
+                          <span class="wpcf7-form-control-wrap tel-539">
+                            <input type="tel" name="phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel form-control" aria-required="true" aria-invalid="false" placeholder="Please enter mobile number" required></span><br />
+                          </div></p></div>
+                            <div class="col-lg-12"><div class="form-group">
+                              <label class="ao-tour-form-label">Subject</label><br />
+                              <span class="wpcf7-form-control-wrap your-subject">
+                              <input type="text" name="subject" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Please state your subject" required></span>
+                            </div></p></div>
+                              <div class="col-lg-12">
+                                <div class="form-group">
+                                <label class="ao-tour-form-label">Message*</label><br />
+                                <span class="wpcf7-form-control-wrap your-message">
+                                <textarea name="msg" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control" aria-required="true" aria-invalid="false" placeholder="Write your queries here" required></textarea></span></p>
+                                <p>
+                                  <span class="ao-tour-error">
+                                    <div class="wpcf7-response-output wpcf7-display-none"></div><p>  {% for message in get_flashed_messages()%}
+                                   <p style='color:green'>{{message}}</p>{%endfor%}</span> </div></p></div>
+                                  <div class="col-lg-12">
+                                    <button type="submit" name="button" class="btn ao-tour-btn-primary ao-tour-btn_mma-btn"  style="padding: 10px;">SEND NOW</button></p></div></p>
+                              </form></div>
+
+                              <br><div class="ao-tour-about-legends">
+                                <div class="row"> <div class="col-lg-6">
+                                  <div class="ao-tour-about-legends__block ao-tour-about-legends__block-v2">
+                                    <div class="ao-tour-about-legends__icon"><i class="icon-ao-tour-phone icon-ao-tour"></i></div>
+                                    <div class="ao-tour-about-legends__info">
+                                      <div class="ao-tour-about-legends__label">Telephone</div>
+                                    <div class="ao-tour-about-legends__value">We are happy to answer your questions or give you directions via phone.<strong>ph</strong></div> </div> </div> </div>
+                                    <div class="col-lg-6">
+                                      <div class="ao-tour-about-legends__block ao-tour-about-legends__block-v2">
+                                      <div class="ao-tour-about-legends__icon"><i class="icon-email-mail-streamline icon-ao-tour"></i></div>
+                                    <div class="ao-tour-about-legends__info">
+                                      <div class="ao-tour-about-legends__label">Email</div>
+                                      <div class="ao-tour-about-legends__value">If you are on the go and still want to ask a question, simply drop us an e-mail.<strong>
+                                        <a href="mailto:info@pakadventures.pk"></a>em</strong> </div> </div>
+                                  </div> </div> </div> </div> </div> </div> </div> </div> </ao-tour-make-adventure>
 </div>
+
 {% endblock %}

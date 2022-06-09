@@ -109,7 +109,7 @@
             <div class="leftside-menu">
 
                 <!-- LOGO -->
-                <a href="{{url_for('admin')}}" class="logo text-center logo-light">
+                <a href="{{url_for('user')}}" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="{{url_for('static', filename='assets/images/logo.png')}}" alt="" height="16">
                     </span>
@@ -119,7 +119,7 @@
                 </a>
 
                 <!-- LOGO -->
-                <a href="index.html" class="logo text-center logo-dark">
+                <a href="{{url_for('user')}}" class="logo text-center logo-dark">
                     <span class="logo-lg">
                         <img src="{{url_for('static', filename='assets/images/logo-dark.png')}}" alt="" height="16">
                     </span>
@@ -141,28 +141,16 @@
                                 <i class="uil-comments-alt"></i>
                                 {%if noti%}
                                 <span class="badge bg-success float-end">{{noti|count}}</span> {%endif%}
-                                <span> Chat </span>
+                                <span> Chat With Us </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                               <a href="{{url_for('booking_history')}}" class="side-nav-link">
-                                  <i class="uil-comments-alt"></i>
+                                  <i class="uil-calender"></i>
                                   <span> My Bookings </span>
                               </a>
                           </li>
-                          <li class="side-nav-item">
-                                <a href="{{url_for('manage_users')}}" class="side-nav-link">
-                                    <i class="uil-comments-alt"></i>
-                                    <span> Manage Users </span>
-                                </a>
-                            </li>
 
-                          <li class="side-nav-item">
-                                <a href="{{url_for('help')}}" class="side-nav-link">
-                                    <i class="uil-book-alt"></i>
-                                    <span> Contact Help </span>
-                                </a>
-                            </li>
                     <!-- End Sidebar -->
 
                     <div class="clearfix"></div>
