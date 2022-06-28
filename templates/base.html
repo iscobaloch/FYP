@@ -85,7 +85,7 @@ background: rgb(55, 55, 55);
 66%     {-webkit-transform: translate3d(-2700px, 0, 0);}
 77%     {-webkit-transform: translate3d(-2970px, 0, 0);}
 88%     {-webkit-transform: translate3d(-3240px, 0, 0);}
-100%     {-webkit-transform: translate3d(-3510px, 0, 0);}
+100%     {-webkit-transform: translate3d(-3310px, 0, 0);}
 }
 
 </style>
@@ -105,7 +105,7 @@ background: rgb(55, 55, 55);
 <div class="top-header">
 	<div class="container">
 		<ul class="tp-hd-lft wow fadeInLeft animated" data-wow-delay=".5s">
-			<li class="hm"><a href="{{url_for('home')}}l"><i class="fa fa-home"></i></a></li>
+			<li class="hm"><a href="{{url_for('home')}}"><i class="fa fa-home"></i></a></li>
 			<li class="prnt"><a href="{{url_for('admin')}}">Dashboard</a></li>
 				<li class="prnt"><a href="{{url_for('change_password')}}">Change Password</a></li>
 			<li class="prnt"><a href="{{url_for('manage_tours')}}">Manage Bookings</a></li>
@@ -139,8 +139,8 @@ background: rgb(55, 55, 55);
 <div class="top-header">
 	<div class="container">
 		<ul class="tp-hd-lft wow fadeInLeft animated" data-wow-delay=".5s">
-			<li class="hm"><a href="index.php"><i class="fa fa-home"></i></a></li>
-				<li class="hm"><a href="admin/index.php">Admin Login</a></li>
+			<li class="hm"><a href="{{url_for('home')}}"><i class="fa fa-home"></i></a></li>
+				<li class="hm"><a href="{{url_for('admin')}}">Admin Login</a></li>
 		</ul>
 		<ul class="tp-hd-rgt wow fadeInRight animated" data-wow-delay=".5s">
       	<li class="hm"><a href="index.php"><i class="fa-solid fa-user-check"></i></a></li>
@@ -156,7 +156,7 @@ background: rgb(55, 55, 55);
 <div class="header">
 	<div class="container">
 		<div class="logo wow fadeInDown animated" data-wow-delay=".5s">
-			<a href="index.php">Tourism <span>Management System</span></a>
+			<a href="{{url_for('home')}}">TOUR <span style="color:grey"> &amp;</span> <span>TRAVEL AGENCY</span></a>
 		</div>
 
 		<div class="lock fadeInDown animated" data-wow-delay=".5s">
@@ -223,7 +223,7 @@ background: rgb(55, 55, 55);
 				<li><a class="dribbble" href="#"><span>Dribbble</span></a></li>
 			</ul>
 		</div>
-		<p class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"> <script>document.write(new Date().getFullYear())</script> © TMS . All Rights Reserved </p>
+		<p class="wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;"> <script>document.write(new Date().getFullYear())</script> © TOUR & TRAVEL AGENCY . All Rights Reserved </p>
 	</div>
 </div>
 

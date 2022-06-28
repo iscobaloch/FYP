@@ -60,7 +60,7 @@
                                                       {% for b in booking%}
                                                         <tr>
                                                           <td hidden>{{loop.index}}</td>
-                                                            <td>BK#-{{b.Tblbooking.BookingId}}</td>
+                                                            <td><a href="/trip_id={{b.Tbltourpackages.PackageId}}"><button type="button" class="btn btn-info btn-rounded">BK#-{{b.Tbltourpackages.PackageId}}</button></a></td>
                                                             <td>{{b.Tbltourpackages.PackageName}}</td>
                                                             <td>{{b.User.fullname}}</td>
                                                             <td>{{b.User.mobile}}</td>

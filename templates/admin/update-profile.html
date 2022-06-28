@@ -1,5 +1,5 @@
-{%extends "admin/base.html"%}
-{% block title%} ADD TOUR - ADMIN PANEL{% endblock %}
+{%extends "user/base.html"%}
+{% block title%} UPDATE PROFILE - TMS{% endblock %}
    {% block body %}
 
 
@@ -14,7 +14,7 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                          <li class="breadcrumb-item active">Add Tour</li>
+                                          <li class="breadcrumb-item active">Update Profile</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             <div class="mb-2">
-                                                <h4 class="header-title mt-2">Add Tour Details</h4>
+                                                <h4 class="header-title mt-2">Update Profile</h4>
                                                 <p class="text-muted font-14">Check all details before submission</p>
                                                 <div class="row">
                                                     <div class="col-12">
@@ -40,23 +40,13 @@
                                                                             <div class="col-lg-6">
                                                                                 <form method="post" enctype="multipart/form-data" action="{{url_for('add_tour')}}">
                                                                                     <div class="mb-3">
-                                                                                        <label for="title" class="form-label">TITLE</label>
-                                                                                        <input type="text" id="title" name="title" class="form-control" placeholder="TITLE FOR THE TOUR">
+                                                                                        <label for="title" class="form-label">FULL NAME</label>
+                                                                                        <input type="text" id="title" name="title" class="form-control" value="Fullname">
                                                                                     </div>
 
                                                                                     <div class="mb-3">
-                                                                                        <label for="location" class="form-label">TOUR LOCATION</label>
+                                                                                        <label for="location" class="form-label">EMAIL ADDRESS</label>
                                                                                         <input type="text" id="location" name="location" class="form-control" placeholder="TOUR LOCATION">
-                                                                                    </div>
-
-                                                                                    <div class="mb-3">
-                                                                                        <label for="transport" class="form-label">TRANSPORT</label>
-                                                                                        <select class="form-select" id="transport" name="transport">
-                                                                                          <option readonly>TRANSPORT AVAILABLITY</option>
-
-                                                                                 <option value="1">YES</option>
-                                                                                  <option value="2">NO</option>
-                                                                                             </select>
                                                                                     </div>
 
                                                                                     <div class="mb-3">
@@ -128,7 +118,6 @@
 
                                             </div>
                                         </li>
-                                            </div>
 
 
 {% endblock %}

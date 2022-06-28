@@ -41,7 +41,7 @@
                 <!-- LOGO -->
                 <a href="{{url_for('admin')}}" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="{{url_for('static', filename='assets/images/logo.png')}}" alt="" height="16">
+                        <img src="{{url_for('static', filename='assets/images/nlogo.png')}}" alt="" height="16">
                     </span>
                     <span class="logo-sm">
                         <img src="{{url_for('static', filename='assets/images/logo_sm.png')}}" alt="" height="16">
@@ -49,7 +49,7 @@
                 </a>
 
                 <!-- LOGO -->
-                <a href="index.html" class="logo text-center logo-dark">
+                <a href="{{url_for('admin')}}" class="logo text-center logo-dark">
                     <span class="logo-lg">
                         <img src="{{url_for('static', filename='assets/images/logo-dark.png')}}" alt="" height="16">
                     </span>
@@ -63,7 +63,15 @@
                     <!--- Sidemenu -->
                     <ul class="side-nav">
 
+                      <li class="side-nav-title side-nav-item">Home</li>
 
+                    <li class="side-nav-item">
+                          <a href="{{url_for('home')}}" class="side-nav-link">
+                              <i class="uil-home-alt"></i>
+
+                              <span> Home Page </span>
+                          </a>
+                      </li>
                         <li class="side-nav-title side-nav-item">Apps</li>
 
                       <li class="side-nav-item">
@@ -234,7 +242,7 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-md-6">
-                 <script>document.write(new Date().getFullYear())</script> © Hyper - Coderthemes.com
+                 <script>document.write(new Date().getFullYear())</script> © TOUR & TRAVEL AGENCY
              </div>
              <div class="col-md-6">
                  <div class="text-md-end footer-links d-none d-md-block">

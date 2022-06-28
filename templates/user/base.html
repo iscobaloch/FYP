@@ -111,7 +111,7 @@
                 <!-- LOGO -->
                 <a href="{{url_for('user')}}" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="{{url_for('static', filename='assets/images/logo.png')}}" alt="" height="16">
+                        <img src="{{url_for('static', filename='assets/images/nlogo.png')}}" alt="" height="16">
                     </span>
                     <span class="logo-sm">
                         <img src="{{url_for('static', filename='assets/images/logo_sm.png')}}" alt="" height="16">
@@ -132,7 +132,15 @@
 
                     <!--- Sidemenu -->
                     <ul class="side-nav">
+                      <li class="side-nav-title side-nav-item">Home</li>
 
+                    <li class="side-nav-item">
+                          <a href="{{url_for('home')}}" class="side-nav-link">
+                              <i class="uil-home-alt"></i>
+
+                              <span> Home Page </span>
+                          </a>
+                      </li>
 
                         <li class="side-nav-title side-nav-item">Apps</li>
 
@@ -192,7 +200,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="{{url_for('update_profile')}}" class="dropdown-item notify-item">
                                         <i class="mdi mdi-account-circle me-1"></i>
                                         <span>Account Settings</span>
                                     </a>
@@ -248,7 +256,7 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-md-6">
-                 <script>document.write(new Date().getFullYear())</script> © Hyper - Coderthemes.com
+                 <script>document.write(new Date().getFullYear())</script> © TOUR & TRAVEL AGENCY
              </div>
              <div class="col-md-6">
                  <div class="text-md-end footer-links d-none d-md-block">

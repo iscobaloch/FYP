@@ -11,8 +11,8 @@
 
                             <!-- Logo -->
                             <div class="card-header pt-4 pb-4 text-center bg-primary">
-                                <a href="index.html">
-                                    <span><img src="{{url_for('static', filename='assets/images/logo.png')}}" alt="" height="18"></span>
+                                <a href="{{url_for('home')}}">
+                                    <span><img src="{{url_for('static', filename='assets/images/nlogo.png')}}" alt="" height="18"></span>
                                 </a>
                             </div>
 
@@ -27,7 +27,7 @@
 
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input class="form-control" type="username" id="email" name="email" required="" placeholder="Enter your email">
+                                        <input class="form-control" type="email" id="email" name="email" required="" placeholder="Enter your email">
                                     </div>
 
                                     <div class="mb-3">
@@ -40,7 +40,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% for message in get_flashed_messages()%}
+                    <p style='color:skyblue'>{{message}}</p>
 
+                    {% endfor %}
+                    {% if error %}
+                    <p style='color:blue'> {{error}}</p>
+
+                    {% endif %}
                                     <div class="mb-3 mb-3">
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>

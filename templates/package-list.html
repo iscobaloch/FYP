@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title%} TMS - HOME PAGE {% endblock %}
+{% block title%} PACKAGES LIST - TOUR & TRAVEL AGENCY {% endblock %}
  {% block body %}
 
 
@@ -45,7 +45,7 @@
 
                             <div class="ao-tour-event-list__meta-col col-sm-6"> {% if packs.Meal ==1 %}<i class="icon-ao-tour icon-meals"></i> Standard Meals {%endif%}</div>
                            <div class="ao-tour-event-list__meta-col col-sm-6"> </div> </div> </div>
-                           <div class="ao-tour-event-list__details-secondary"> <p><b>Details:</b>{{packs.PackageDetails [0:260] | safe }}... </p> </div></a> </div>
+                           <div class="ao-tour-event-list__details-secondary"> <p>{{packs.PackageDetails [0:260] | safe }}... </p> </div></a> </div>
                            <div class="ao-tour-event-list__cta"> <div class="ao-tour-event-list__cta-inner">
                              <div class="ao-tour-event-list__price"> <a href="trip_id={{packs.PackageId}}" >
                                <div class="ao-tour-event-list__price-label">Starting from</div>

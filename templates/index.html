@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title%} TMS - HOME PAGE {% endblock %}
+{% block title%} - TOUR & TRAVEL AGENCY - HOME {% endblock %}
  {% block body %}
 
 
@@ -10,7 +10,7 @@
             <div class="track" style="opacity: 1;" role="listbox">
               {% for packs in packs %}
               {% set fname = 'packimages/' + packs.PackageImage %}
-                <a href="trip_id={{packs.PackageId}}" class="ao-tour-home-slider__item slick-slide slick-cloned" style="width: 270px;" tabindex="-1" role="option" aria-describedby="slick-slide383" data-slick-index="-5" aria-hidden="true">
+                <a href="trip_id={{packs.PackageId}}" class="ao-tour-home-slider__item slick-slide slick-cloned" style="width: 300px;" tabindex="-1" role="option" aria-describedby="slick-slide383" data-slick-index="-5" aria-hidden="true">
                     <div class="ao-tour-home-slider__item-inner" style="background-image: url({{ url_for('static', filename=fname) }});">
                         <div class="ao-tour-home-slider__price">Starting From: <span>{{packs.PackagePrice}}</span></div>
                         <div class="ao-tour-home-slider__title">{{packs.PackageLocation}}</div>
@@ -33,7 +33,7 @@
     				<a href="offers.html"><i class="fa fa-usd"></i></a>
     			</div>
     			<div class="rup-rgt">
-    				<h3>UP TO USD. 50 OFF</h3>
+    				<h3>UP TO PKR. 50 OFF</h3>
     				<h4><a href="offers.html">TRAVEL SMART</a></h4>
 
     			</div>
@@ -44,8 +44,8 @@
     				<a href="offers.html"><i class="fa fa-h-square"></i></a>
     			</div>
     			<div class="rup-rgt">
-    				<h3>UP TO 70% OFF</h3>
-    				<h4><a href="offers.html">ON HOTELS ACROSS WORLD</a></h4>
+    				<h3>UP TO 40% OFF</h3>
+    				<h4><a href="offers.html">ON HOTELS</a></h4>
 
     			</div>
     				<div class="clearfix"></div>

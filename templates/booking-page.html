@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title%} TMS - HOME PAGE {% endblock %}
+{% block title%} {{result.PackageName}}  - TOUR & TRAVEL AGENCY {% endblock %}
  {% block body %}
 
 
@@ -13,17 +13,17 @@
 <div class="clearfix">
 <a class="btn ao-tour__cta-btn ao-tour-btn-accent ao-tour__cta-chat" href="../../../api.whatsapp.com/send10c6.html?phone=03334776744">
 <i class="ao-tour-icon icon-bubble"></i></a>
-<a class="btn ao-tour__cta-btn ao-tour-btn-primary" href="../../make-my-trip/index.html">
+<a class="btn ao-tour__cta-btn ao-tour-btn-primary" href="">
 <i class="ao-tour-icon icon-ao-tour-map"></i><span>Make my Trip</span></a> </div> </div> </div> </div> </ao-tour-call-adventure-banner>
 <div class="ao-tour-page_header" style="background: linear-gradient(rgba(26, 26, 26, 0.71), rgba(0, 0, 0, 0.83)), url({{ url_for('static', filename=fname) }}) no-repeat center; background-size: cover;"> <div class="container">
   <div class="ao-tour-page_event-header"> <div class="ao-tour-page__meta-wrapper"> <ul class="ao-tour-page__breadcrumbs">
-<li><a href="../../index.html">Home</a></li>
-<li><a href="../../trips/index.html">Trips</a></li>
+<li><a href="{{url_for('home')}}">Home</a></li>
+<li><a href="{{url_for('trips')}}">Trips</a></li>
 <li><span>{{result.PackageName}}</span></li> </ul>
 <h1 class="ao-tour-page__title">{{result.PackageName}}</h1>
-<a class="ao-tour-page__vendor">Pak Adventures</a> <a1 class="ao-tour-page__location">
+<a class="ao-tour-page__vendor">TMS - UOB</a> <a1 class="ao-tour-page__location">
 <i class="icon-ao-tour-pin icon-ao-tour"></i><aa class="custom-category">
-<a href="../../trips/khyber-pakhtunkhwa/index.html" rel="category tag">{{result.PackageLocation}}</a></aa> </a1> <a class="ao-tour-page__duration">
+<a href="#" rel="category tag">{{result.PackageLocation}}</a></aa> </a1> <a class="ao-tour-page__duration">
 <i class="icon-ao-tour-watch icon-ao-tour"></i> {% if result.Duration<2 %} {{result.Duration}} Day {%else%} {{result.Duration}} Days {% endif %}</a>
 <section class="ao-tour-single-event__gallery"> <slick-carousel _nghost-c2="" class="slick-initialized slick-slider">
   <div class="row hidden-xs"> <div class="col-md-4" for="zoomCheck0">
@@ -155,8 +155,8 @@ input[type=checkbox]:checked ~ .ch3 > img { transform: scale(2.5) translate(-50%
 <div class="ao-tour-single-event__facilities-row">
 <div class="ao-tour-single-event__facilities-row-label">Services</div>
 <ul class="ao-tour-single-event__facilities-row-value">
-<li>{% if result.accommodation ==1 %} Accommodation (3-4 persons sharing)</li> {% endif %} <li> Transport</li>
-<li> Standard Meals</li><li> Guide</li><li> Basic first aid kit</li> </ul> </div>
+<li>{% if result.Accommodation ==1 %} Accommodation (3-4 persons sharing)</li> {% endif %} <li> {% if result.Transport ==1 %} Transport</li>{% endif %}
+<li>{% if result.Meal ==1 %} Standard Meals</li>{% endif %}<li> Guide</li><li> Basic first aid kit</li> </ul> </div>
  <div class="ao-tour-single-event__facilities-row">
 <div class="ao-tour-single-event__facilities-row-label">Activities</div>
 <ul class="ao-tour-single-event__facilities-row-value">

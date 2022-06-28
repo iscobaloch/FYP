@@ -117,7 +117,7 @@ def login():
             username = request.form.get("username")
             password = request.form.get("password")
             adm = Admin.query.filter_by(username=username).first()
-            if pbkdf2_sha256.verify(password, adm.password):
+            if adm and pbkdf2_sha256.verify(password, adm.password):
                 session['admin'] = adm.username
                 session['aid']= adm.id
                 return redirect(url_for('admin'))
@@ -141,13 +141,14 @@ def signin():
             email = request.form.get("email")
             password = request.form.get("password")
             usr = User.query.filter_by(email=email).first()
-            if pbkdf2_sha256.verify(password, usr.password):
+            if usr and pbkdf2_sha256.verify(password, usr.password):
                 session['user'] = usr.email
                 session['uid']= usr.id
+
                 session['username']= usr.fullname
                 return redirect(url_for('user'))
             else:
-                error='Invalid Username or Password'
+                error='Invalid Email or Password'
                 return render_template("user/pages-login.html", error=error)
          else:
              return render_template("user/pages-login.html")
@@ -191,12 +192,12 @@ def add_tour():
             pdetails = request.form.get('editor')
             price = request.form.get('price')
             f = save_images(request.files.get('timage'))
-            flash("THIS ARTICLE HAS BEEN PUBLISHED")
             tour = Tbltourpackages(PackageName=title, PackageDetails=pdetails, PackageLocation=location, Transport=transport, Meal=meal,Duration=duration,
                                    Accommodation=accommodation,PackagePrice=price, PackageImage =f)
             db.session.add(tour)
             db.session.commit()
-            return redirect(url_for('admin'))
+            flash("TOUR ADDED SUCCESSFULLY")
+            return redirect(url_for('manage_tours'))
         else:
             return render_template("admin/add-tour.html")
 
@@ -487,6 +488,31 @@ def info(type):
                 return render_template('404.html')
 
 
+#   UPDATE PROFILE SECTION
+@app.route("/update-profile", methods=['POST','GET'])
+def update_profile():
+    if session.get('user'):
+        if request.method=='POST':
+            email= request.form.get('email')
+            fname= request.form.get('fname')
+            mobile= request.form.get('mobile')
+            upt = db.session.query(User).filter_by(id=session.get('uid')).first()
+            upt.email= email
+            upt.fullname= fname
+            upt.mobile = mobile
+            db.session.commit()
+            session['username'] = fname
+            flash('PROFILE UPDATED SUCCESSFULLY')
+            user = User.query.filter_by(id=session.get('uid')).first()
+            return render_template('user/update-profile.html', user=user)
+        else:
+            user = User.query.filter_by(id=session.get('uid')).first()
+            return render_template('user/update-profile.html', user=user)
+    else:
+        return redirect(url_for('signin'))
+
+
+
 #   PASSWORD CHANGE SECTION
 @app.route("/change-password", methods=['POST','GET'])
 def change_password():
@@ -531,12 +557,10 @@ def change_password():
 def logout():
     if session.get('admin'):
         session.clear()
-        flash('YOUR SESSION HAS BEEN LOGGED OUT')
-        return redirect(url_for('login'))
+        return redirect(url_for('home'))
     elif session.get('user'):
         session.clear()
-        flash('YOUR SESSION HAS BEEN LOGGED OUT')
-        return redirect(url_for('user'))
+        return redirect(url_for('home'))
     else:
         return redirect(url_for('home'))
 

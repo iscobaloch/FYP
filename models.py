@@ -47,7 +47,7 @@ class About(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(100), nullable=False)
-#
+
 #
 class User(db.Model):
     __tablename__ = 'tblusers'
