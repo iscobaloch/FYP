@@ -10,9 +10,6 @@ import sqlite3
 from models import *
 
 
-with open('config.json', 'r') as c:
-    params = json.load(c)["params"]
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 db = SQLAlchemy()
@@ -167,13 +164,15 @@ def user():
 @app.route("/dashboard")
 def admin():
     if session.get('admin'):
-        member=User.query.count()
+        member= User.query.all()
+        bkk = Tblbooking.query.all()
         cats = Tbltourpackages.query.all()
+        mgs = Chat.query.all()
         booking = db.session.query(User, Tblbooking, Tbltourpackages).filter(Tblbooking.UserId == User.id).filter(
             Tblbooking.PackageId == Tbltourpackages.PackageId) \
             .order_by(Tblbooking.RegDate.desc()).all()
         msg= db.session.query(Chat,User).filter(Chat.uid==User.id).filter(Chat.sender>1).order_by(Chat.time.desc()).all()
-        return render_template("admin/admin.html",cats=cats, member=member, booking=booking, msg=msg)
+        return render_template("admin/admin.html",cats=cats,bkk=bkk, mgs=mgs, member=member, booking=booking, msg=msg)
     else:
         flash('LOGIN FIRST TO ACCESS DASHBOARD')
         return redirect(url_for('login'))
@@ -200,7 +199,6 @@ def add_tour():
             return redirect(url_for('manage_tours'))
         else:
             return render_template("admin/add-tour.html")
-
     else:
         flash('LOGIN FIRST TO PROCEED')
         return render_template("admin/pages-login.html")
