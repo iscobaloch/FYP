@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf67ec9b-6c22-4a2a-9c7c-30a56f444f0d" name="Changes" comment="Updates" />
+    <list default="true" id="cf67ec9b-6c22-4a2a-9c7c-30a56f444f0d" name="Changes" comment="Document" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +156,21 @@
       <option name="project" value="LOCAL" />
       <updated>1659543895938</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Updates">
+      <created>1659601135940</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1659601135940</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Document">
+      <created>1659601303634</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1659601303634</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,6 +200,7 @@
     <MESSAGE value="COMMIT" />
     <MESSAGE value="tms" />
     <MESSAGE value="Updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates" />
+    <MESSAGE value="Document" />
+    <option name="LAST_COMMIT_MESSAGE" value="Document" />
   </component>
 </project>
