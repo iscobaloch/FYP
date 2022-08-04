@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2022 at 11:55 AM
+-- Generation Time: Aug 04, 2022 at 10:17 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -107,9 +107,6 @@ CREATE TABLE `tblbooking` (
 --
 
 INSERT INTO `tblbooking` (`BookingId`, `PackageId`, `UserId`, `FromDate`, `city`, `Comment`, `RegDate`, `status`) VALUES
-(1, 1, 3, '2020-07-11', '2020-07-18', 'I want this package.', '2020-07-08 06:38:36', 2),
-(2, 2, 4, '2020-07-10', '2020-07-13', 'There is some discount', '2020-07-08 06:43:25', 1),
-(3, 4, 1, '2020-07-11', '2020-07-15', 'When I get conformation', '2020-07-08 06:44:39', 2),
 (4, 3, 9, '2022-06-22', 'Quettta', 'manage this for me', '2022-06-20 09:34:46', 1),
 (5, 3, 8, '2022-06-21', 'quetta', 'arrange this tour for me', '2022-06-21 07:13:52', 1);
 
@@ -135,9 +132,6 @@ CREATE TABLE `tblenquiry` (
 --
 
 INSERT INTO `tblenquiry` (`id`, `FullName`, `EmailId`, `MobileNumber`, `Subject`, `Description`, `PostingDate`, `Status`) VALUES
-(1, 'Jone Paaire', 'jone@gmail.com', '4646464646', 'Enquiry for Manali Trip', 'Kindly provide me more offer.', '2020-07-08 06:30:32', 1),
-(2, 'Kishan Twaerea', 'kishan@gmail.com', '6797947987', 'Enquiry', 'Any Offer for North Trip', '2020-07-08 06:31:38', 1),
-(3, 'Jacaob', 'Jai@gmail.com', '1646689721', 'Any offer for North', 'Any Offer for north', '2020-07-08 06:32:41', 1),
 (4, 'Fayaz GN', 'fayazgn@gmail.com', '9233432232', 'Awaran Tour', 'ex[lain ', '2022-06-18 12:52:51', 1);
 
 -- --------------------------------------------------------
